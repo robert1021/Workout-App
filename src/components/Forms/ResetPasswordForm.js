@@ -1,20 +1,62 @@
-import { Stack } from "@mui/material";
+import "./Forms.css";
+import { Stack, TextField, Button } from "@mui/material";
+import { useState } from "react";
 
 export default function ResetPasswordForm() {
+  // manage state for input fields
+  const [email, setEmail] = useState("");
+
+  // mamange state for input error
+  const [emailError, setEmailError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // set both inputs false so red outline goes away
+    setEmailError(false);
+
+    if (email === "") {
+      setEmailError(true);
+    }
+
+    // do something if email and password
+    if (email) {
+      console.log(email);
+    }
+  };
+
   return (
     <Stack alignItems="center" className="box">
-      <form>
-        <h2>Reset your password</h2>
-        <p>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <Stack alignItems="center">
+          <h2>Reset your password</h2>
+        </Stack>
+        <h3>
           Enter the email address associated with your account to reset your
           password.
-        </p>
+        </h3>
 
         <div className="form-group">
-          <input type="email" name="email" id="email" placeholder="Email" />
+          <TextField
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            id="email"
+            type="email"
+            label="Email"
+            variant="outlined"
+            required
+            error={emailError}
+          />
         </div>
-
-        <input type="submit" value={"Continue"} />
+        <Stack alignItems="center">
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            className="form-button"
+          >
+            Continue
+          </Button>
+        </Stack>
       </form>
     </Stack>
   );
