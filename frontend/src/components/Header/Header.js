@@ -4,21 +4,28 @@ import {
   Tab,
   Toolbar,
   Button,
+  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DrawerLeft from "./DrawerLeft";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const headerStyle = {
     background: "#333",
   };
 
-  const tabsStyle = {
-    marginLeft: '25px'
+  const logoStyle = {
+    textDecoration: "none",
+    color: "white"
   }
+
+  const tabsStyle = {
+    marginLeft: "25px",
+  };
 
   const tabStyle = {
     color: "#FFFFFF",
@@ -43,7 +50,12 @@ export default function Header() {
     <>
       <AppBar sx={headerStyle}>
         <Toolbar>
-          <h2>Workout App</h2>
+          <Typography 
+            sx={logoStyle}
+            variant="h4"
+            component={Link} to="/">
+            Workout App
+          </Typography>
           <FitnessCenterIcon />
 
           {isSmallScreen ? (
@@ -56,14 +68,19 @@ export default function Header() {
                 indicatorColor="primary"
                 sx={tabsStyle}
               >
-                <Tab label="Contact" sx={tabStyle} />
-                <Tab label="About" sx={tabStyle} />
+                <Tab
+                  label="Contact"
+                  sx={tabStyle}
+                  component={Link}
+                  to="/contact"
+                />
+                <Tab label="About" sx={tabStyle} component={Link} to="/about" />
               </Tabs>
 
-              <Button sx={logInButtonStyle} variant="contained">
+              <Button sx={logInButtonStyle} variant="contained" component={Link} to="/login">
                 Log In
               </Button>
-              <Button sx={SignUpButtonStyle} variant="contained">
+              <Button sx={SignUpButtonStyle} variant="contained" component={Link} to="/signup">
                 Sign Up
               </Button>
             </>
