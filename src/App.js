@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header"
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="content">
       <CssBaseline />
-      <Navbar />
+      <Header />
 
       <Routes>
         <Route path="/" element={<Home />} />
