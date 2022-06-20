@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   // manage state for tabs
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(false);
 
   const theme = useTheme();
   // check if screen is small size
@@ -77,7 +77,7 @@ export default function Header() {
                 <Tab label="About" sx={tabStyle} component={Link} to="/about" />
               </Tabs>
 
-              <Button sx={logInButtonStyle} variant="contained" component={Link} to="/login">
+              <Button sx={logInButtonStyle} variant="contained" component={Link} to="/login" onClick={() => setValue(false)}>
                 Log In
               </Button>
               <Button sx={SignUpButtonStyle} variant="contained" component={Link} to="/signup">
