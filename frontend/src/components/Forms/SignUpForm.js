@@ -6,6 +6,13 @@ import { useState } from "react";
 import axios from 'axios'
 
 export default function SignUpForm() {
+
+  // logic needs to be done to determine what error to show for helper text
+  // these variables are for testing purposes
+  const usernameHelperText = 'testing error username'
+  const emailHelperText = 'testing error email'
+  const passwordHelperText = 'testing error password'
+
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
@@ -25,7 +32,7 @@ export default function SignUpForm() {
 
     if (user === "") {
       setUserError(true)
-    } 
+    }
 
     if (email === "") {
       setEmailError(true)
@@ -75,6 +82,7 @@ export default function SignUpForm() {
             variant="outlined"
             required
             error={userError}
+            helperText={userError ? usernameHelperText : null}
           />
         </div>
         <div className="form-group">
@@ -87,6 +95,7 @@ export default function SignUpForm() {
             variant="outlined"
             required
             error={emailError}
+            helperText={emailError ? emailHelperText : null}
           />
         </div>
         <div className="form-group">
@@ -99,6 +108,7 @@ export default function SignUpForm() {
             variant="outlined"
             required
             error={passwordError}
+            helperText={passwordError ? passwordHelperText : null}
           />
         </div>
         <Stack alignItems="center" className="signup-button">
