@@ -4,6 +4,8 @@ import "./SignUpForm.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
+import emailValidation from "./emailValidation.js"
+
 
 export default function SignUpForm() {
 
@@ -13,6 +15,10 @@ export default function SignUpForm() {
   const emailHelperText = 'testing error email'
   const passwordHelperText = 'testing error password'
 
+  let isValidEmail = false
+
+
+
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
@@ -21,6 +27,7 @@ export default function SignUpForm() {
   const [userError, setUserError] = useState(false)
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
+  const [emailErrorMsg, setEmailErrorMsg] = useState('')
 
 
   const handleSubmit = (e) => {
@@ -29,13 +36,22 @@ export default function SignUpForm() {
     setUserError(false)
     setEmailError(false)
     setPasswordError(false)
+    setEmailErrorMsg('')
+    isValidEmail = true
 
     if (user === "") {
       setUserError(true)
     }
 
+    // check if email empty and valid
     if (email === "") {
       setEmailError(true)
+      setEmailErrorMsg(emailHelperText)
+
+    } else if (!emailValidation(email)){
+      setEmailError(true)
+      isValidEmail = false
+      setEmailErrorMsg('Invalid email')
     }
 
     if (password === "") {
@@ -43,7 +59,8 @@ export default function SignUpForm() {
     }
 
     // do something if all fields filled
-    if (user && email && password) {
+    if (user && email && password && isValidEmail) {
+
       console.log(user, email, password);
 
       axios.post("http://localhost:4000/auth/register",
@@ -95,7 +112,7 @@ export default function SignUpForm() {
             variant="outlined"
             required
             error={emailError}
-            helperText={emailError ? emailHelperText : null}
+            helperText={emailErrorMsg}
           />
         </div>
         <div className="form-group">
