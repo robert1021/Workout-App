@@ -6,20 +6,20 @@ import { useState } from "react";
 
 export default function LogInForm() {
   // manage state for input fields
-  const [email, setEmail] = useState("");
+  const [emailUser, setEmailUser] = useState("");
   const [password, setPassword] = useState("");
   // mamange state for input error
-  const [emailError, setEmailError] = useState(false);
+  const [emailUserError, setEmailUserError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // set both inputs false so red outline goes away
-    setEmailError(false);
+    setEmailUserError(false);
     setPasswordError(false);
 
-    if (email === "") {
-      setEmailError(true);
+    if (emailUser === "") {
+      setEmailUserError(true);
     }
 
     if (password === "") {
@@ -27,8 +27,8 @@ export default function LogInForm() {
     }
 
     // do something if email and password
-    if (email && password) {
-      console.log(email, password);
+    if (emailUser && password) {
+      console.log(emailUser, password);
     }
   };
 
@@ -40,14 +40,14 @@ export default function LogInForm() {
         </Stack>
         <div className="form-group">
           <TextField
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmailUser(e.target.value)}
             fullWidth
-            id="email"
-            type="email"
-            label="Email"
+            id="email-user"
+            type="text"
+            label="Email or Username"
             variant="outlined"
             required
-            error={emailError}
+            error={emailUserError}
           />
         </div>
         <div className="form-group">

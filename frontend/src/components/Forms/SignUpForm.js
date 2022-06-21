@@ -18,7 +18,7 @@ export default function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // set both inputs false so red outline goes away
+    // set all inputs false so red outline goes away
     setUserError(false)
     setEmailError(false)
     setPasswordError(false)
@@ -35,7 +35,7 @@ export default function SignUpForm() {
       setPasswordError(true)
     }
 
-    // do something if email and password
+    // do something if all fields filled
     if (user && email && password) {
       console.log(user, email, password);
 
