@@ -49,7 +49,7 @@ export default function SignUpForm() {
       axios.post("http://localhost:4000/auth/register",
         {
           email: email,
-          // username: username,
+          user: user,
           password: password
         })
         .then(() => {

@@ -1,13 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const User = require('../models/User')
+const bcrypt = require('bcryptjs')
 
 const AuthController = require('../controllers/AuthController')
 
 
-router.post('/register', function(req, res){
-    AuthController.register
+router.post('/register', AuthController.register)
+
+
+router.get('/', (req, res) => {
+    res.send("Testing that this works")
 })
-
-
 
 module.exports = router

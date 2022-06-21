@@ -5,9 +5,9 @@ const userSchema = new Schema({
     email: {
         type: String
     },
-    // username: {
-    //     type: String
-    // },
+    user: {
+        type: String
+    },
     password: {
         type: String
     }

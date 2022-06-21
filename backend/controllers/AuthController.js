@@ -3,31 +3,31 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 
-const register = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10, function(err, hashedPass) {
-        if(err) {
-            res.json({
-                error: err
-            })
-        }
+const register = async (req, res) => {
+    try {
+        const salt = await bcrypt.genSalt()
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
         let user = new User({
             email: req.body.email,
-            // username: req.body.username,
-            password: hashedPass
+            user: req.body.user,
+            password: hashedPassword
         })
         user.save()
-        .then(user => {
-            res.json({message: 'User Added Successfully!'})
+        .then(() => {
+            res.json({message: "User Added Succesfully!"})
         })
-        .catch(error => {
-            res.json({
-                message: 'An error occured!'
-            })
+        .catch((e) => {
+            res.jons({message: "Error with saving", error: e})
         })
-    })
-
+    } 
+    catch {
+        res.send("Error processing credentials")
+    }
+    
     
 }
 
-module.exports = register
+module.exports = {
+    register
+}
