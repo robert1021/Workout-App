@@ -7,47 +7,55 @@ import axios from 'axios'
 
 export default function SignUpForm() {
   // manage state for input fields
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   // mamange state for input error
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const [userError, setUserError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [passwordError, setPasswordError] = useState(false)
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // set both inputs false so red outline goes away
-    setEmailError(false);
-    setPasswordError(false);
+    setUserError(false)
+    setEmailError(false)
+    setPasswordError(false)
+
+    if (user === "") {
+      setUserError(true)
+    } 
 
     if (email === "") {
-      setEmailError(true);
+      setEmailError(true)
     }
 
     if (password === "") {
-      setPasswordError(true);
+      setPasswordError(true)
     }
 
     // do something if email and password
-    if (email && password) {
-      console.log(email, password);
-      
-      axios.post("http://localhost:4000/auth/register", 
-      {
-        email: email,  
-      // username: username,
-        password: password
-      })
-      .then(() => {
-        console.log("this works")
-      })
-      .catch((e) => {
-        console.log("Error with backend", e)
-      })
-        
-      
-        
-      
-      
+    if (user && email && password) {
+      console.log(user, email, password);
+
+      axios.post("http://localhost:4000/auth/register",
+        {
+          email: email,
+          // username: username,
+          password: password
+        })
+        .then(() => {
+          console.log("this works")
+        })
+        .catch((e) => {
+          console.log("Error with backend", e)
+        })
+
+
+
+
+
     }
   };
 
@@ -57,6 +65,18 @@ export default function SignUpForm() {
         <Stack alignItems="center">
           <h2>Get started with Workout App</h2>
         </Stack>
+        <div className="form-group">
+          <TextField
+            onChange={(e) => setUser(e.target.value)}
+            fullWidth
+            id="user"
+            type="text"
+            label="Username"
+            variant="outlined"
+            required
+            error={userError}
+          />
+        </div>
         <div className="form-group">
           <TextField
             onChange={(e) => setEmail(e.target.value)}
