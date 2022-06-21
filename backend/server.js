@@ -1,8 +1,8 @@
 require('dotenv').config()
-
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const authRoute = require('./routes/auth')
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 const db = mongoose.connection
@@ -10,8 +10,6 @@ db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected to Database'))
 
 app.use(express.json())
-
-//const authRouter = require('./routes/auth.js')
-//app.use('/auth', authRouter)
+app.use('/auth', authRoute)
 
 app.listen(4000, () => console.log('Server Started'))
