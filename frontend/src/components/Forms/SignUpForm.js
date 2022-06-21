@@ -3,6 +3,7 @@ import "./Forms.css";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios'
 
 export default function SignUpForm() {
   // manage state for input fields
@@ -29,6 +30,24 @@ export default function SignUpForm() {
     // do something if email and password
     if (email && password) {
       console.log(email, password);
+      
+      axios.post("http://localhost:4000/auth/register", 
+      {
+        email: email,  
+      // username: username,
+        password: password
+      })
+      .then(() => {
+        console.log("this works")
+      })
+      .catch((e) => {
+        console.log("Error with backend", e)
+      })
+        
+      
+        
+      
+      
     }
   };
 
