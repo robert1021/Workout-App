@@ -5,6 +5,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Profile from "./pages/Profile";
 import PasswordReset from "./pages/PasswordReset";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/password-reset" element={<PasswordReset />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
