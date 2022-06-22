@@ -1,19 +1,15 @@
 form {
   background-color: whitesmoke;
   border-radius: 8px;
-  width: 40%;
-  min-width: 350px;
+  min-width: 300px;
   padding: 5px;
+  margin-top: 15vh;
 }
 
 .form-group {
   margin-left: 25px;
   margin-right: 25px;
   padding: 15px;
-}
-
-.box {
-  padding-top: 100px;
 }
 
 .form-button {

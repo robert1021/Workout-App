@@ -1,5 +1,5 @@
 import "./Forms.css";
-import { Stack, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button } from "@mui/material";
 import { useState } from "react";
 
 export default function ResetPasswordForm() {
@@ -25,39 +25,42 @@ export default function ResetPasswordForm() {
   };
 
   return (
-    <Stack alignItems="center" className="box">
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Stack alignItems="center">
-          <h2>Reset your password</h2>
-        </Stack>
-        <h3>
-          Enter the email address associated with your account to reset your
-          password.
-        </h3>
+    <Container>
+      <Paper elevation={2}>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Stack alignItems="center">
+            <h2>Reset your password</h2>
+          </Stack>
+          <h3>
+            Enter the email address associated with your account to reset your
+            password.
+          </h3>
 
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-            id="email"
-            type="email"
-            label="Email"
-            variant="outlined"
-            required
-            error={emailError}
-          />
-        </div>
-        <Stack alignItems="center">
-          <Button
-            type="submit"
-            variant="contained"
-            size="large"
-            className="form-button"
-          >
-            Continue
-          </Button>
-        </Stack>
-      </form>
-    </Stack>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setEmail(e.target.value)}
+              fullWidth
+              id="email"
+              type="email"
+              label="Email"
+              variant="outlined"
+              required
+              error={emailError}
+            />
+          </div>
+          <Stack alignItems="center">
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              className="form-button"
+            >
+              Continue
+            </Button>
+          </Stack>
+        </form>
+      </Paper>
+    </Container>
+
   );
 }

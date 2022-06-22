@@ -1,4 +1,4 @@
-import { Stack, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button } from "@mui/material";
 import "./Forms.css";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
@@ -48,7 +48,7 @@ export default function SignUpForm() {
       setEmailError(true)
       setEmailErrorMsg(emailHelperText)
 
-    } else if (!emailValidation(email)){
+    } else if (!emailValidation(email)) {
       setEmailError(true)
       isValidEmail = false
       setEmailErrorMsg('Invalid email')
@@ -84,60 +84,62 @@ export default function SignUpForm() {
   };
 
   return (
-    <Stack alignItems="center" className="box">
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Stack alignItems="center">
-          <h2>Get started with Workout App</h2>
-        </Stack>
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setUser(e.target.value)}
-            fullWidth
-            id="user"
-            type="text"
-            label="Username"
-            variant="outlined"
-            required
-            error={userError}
-            helperText={userError ? usernameHelperText : null}
-          />
-        </div>
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-            id="email"
-            type="email"
-            label="Email"
-            variant="outlined"
-            required
-            error={emailError}
-            helperText={emailErrorMsg}
-          />
-        </div>
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-            id="password"
-            type="password"
-            label="Password"
-            variant="outlined"
-            required
-            error={passwordError}
-            helperText={passwordError ? passwordHelperText : null}
-          />
-        </div>
-        <Stack alignItems="center" className="signup-button">
-          <Button type="submit" variant="contained" size="large" className="form-button">
-            Sign up
-          </Button>
-        </Stack>
-        <h3>
-          Already have an account?
-          <Link to={"/login"}>Log In</Link>
-        </h3>
-      </form>
-    </Stack>
+    <Container>
+      <Paper>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Stack alignItems="center">
+            <h2>Get started with Workout App</h2>
+          </Stack>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setUser(e.target.value)}
+              fullWidth
+              id="user"
+              type="text"
+              label="Username"
+              variant="outlined"
+              required
+              error={userError}
+              helperText={userError ? usernameHelperText : null}
+            />
+          </div>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setEmail(e.target.value)}
+              fullWidth
+              id="email"
+              type="email"
+              label="Email"
+              variant="outlined"
+              required
+              error={emailError}
+              helperText={emailErrorMsg}
+            />
+          </div>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setPassword(e.target.value)}
+              fullWidth
+              id="password"
+              type="password"
+              label="Password"
+              variant="outlined"
+              required
+              error={passwordError}
+              helperText={passwordError ? passwordHelperText : null}
+            />
+          </div>
+          <Stack alignItems="center" className="signup-button">
+            <Button type="submit" variant="contained" size="large" className="form-button">
+              Sign up
+            </Button>
+          </Stack>
+          <h3>
+            Already have an account?
+            <Link to={"/login"}>Log In</Link>
+          </h3>
+        </form>
+      </Paper>
+    </Container>
   );
 }

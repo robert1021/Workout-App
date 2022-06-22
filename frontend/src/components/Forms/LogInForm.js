@@ -1,7 +1,7 @@
 import "./Forms.css";
 import "./LogInForm.css";
 import { Link } from "react-router-dom";
-import { Stack, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button } from "@mui/material";
 import { useState } from "react";
 
 export default function LogInForm() {
@@ -33,50 +33,52 @@ export default function LogInForm() {
   };
 
   return (
-    <Stack alignItems="center" className="box">
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Stack alignItems="center">
-          <h2>Welcome back</h2>
-        </Stack>
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setEmailUser(e.target.value)}
-            fullWidth
-            id="email-user"
-            type="text"
-            label="Email or Username"
-            variant="outlined"
-            required
-            error={emailUserError}
-          />
-        </div>
-        <div className="form-group">
-          <TextField
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-            id="password"
-            type="password"
-            label="Password"
-            variant="outlined"
-            required
-            error={passwordError}
-          />
-        </div>
-        <h4 className="forgot-password">
-          <Link to={"/password-reset"}>Forgot password?</Link>
-        </h4>
+    <Container>
+      <Paper>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Stack alignItems="center">
+            <h2>Welcome back</h2>
+          </Stack>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setEmailUser(e.target.value)}
+              fullWidth
+              id="email-user"
+              type="text"
+              label="Email or Username"
+              variant="outlined"
+              required
+              error={emailUserError}
+            />
+          </div>
+          <div className="form-group">
+            <TextField
+              onChange={(e) => setPassword(e.target.value)}
+              fullWidth
+              id="password"
+              type="password"
+              label="Password"
+              variant="outlined"
+              required
+              error={passwordError}
+            />
+          </div>
+          <h4 className="forgot-password">
+            <Link to={"/password-reset"}>Forgot password?</Link>
+          </h4>
 
-        <Stack alignItems="center" className="login-button">
-          <Button type="submit" variant="contained" size="large" className="form-button">
-            Log in
-          </Button>
-        </Stack>
+          <Stack alignItems="center" className="login-button">
+            <Button type="submit" variant="contained" size="large" className="form-button">
+              Log in
+            </Button>
+          </Stack>
 
-        <h3>
-          Don't have an account?
-          <Link to={"/signup"}>Sign up</Link>
-        </h3>
-      </form>
-    </Stack>
+          <h3>
+            Don't have an account?
+            <Link to={"/signup"}>Sign up</Link>
+          </h3>
+        </form>
+      </Paper>
+    </Container>
   );
 }
