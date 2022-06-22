@@ -53,7 +53,8 @@ export default function Header() {
           <Typography 
             sx={logoStyle}
             variant="h4"
-            component={Link} to="/">
+            component={Link} to="/"
+            onClick={() => setValue(false)}>
             Workout App
           </Typography>
           <FitnessCenterIcon />
@@ -80,7 +81,7 @@ export default function Header() {
               <Button sx={logInButtonStyle} variant="contained" component={Link} to="/login" onClick={() => setValue(false)}>
                 Log In
               </Button>
-              <Button sx={SignUpButtonStyle} variant="contained" component={Link} to="/signup">
+              <Button sx={SignUpButtonStyle} variant="contained" component={Link} to="/signup" onClick={() => setValue(false)}>
                 Sign Up
               </Button>
             </>
