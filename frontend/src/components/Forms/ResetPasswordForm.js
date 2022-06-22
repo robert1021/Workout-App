@@ -26,7 +26,7 @@ export default function ResetPasswordForm() {
 
   return (
     <Container>
-      <Paper elevation={2}>
+      <Paper elevation={3} className="form-box">
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Stack alignItems="center">
             <h2>Reset your password</h2>

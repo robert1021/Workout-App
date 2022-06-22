@@ -34,7 +34,7 @@ export default function LogInForm() {
 
   return (
     <Container>
-      <Paper>
+      <Paper elevation={3} className="form-box">
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Stack alignItems="center">
             <h2>Welcome back</h2>

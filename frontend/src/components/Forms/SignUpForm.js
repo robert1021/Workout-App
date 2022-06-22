@@ -85,7 +85,7 @@ export default function SignUpForm() {
 
   return (
     <Container>
-      <Paper>
+      <Paper elevation={3} className="form-box">
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Stack alignItems="center">
             <h2>Get started with Workout App</h2>
