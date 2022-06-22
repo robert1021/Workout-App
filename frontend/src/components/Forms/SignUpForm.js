@@ -69,11 +69,11 @@ export default function SignUpForm() {
           user: user,
           password: password
         })
-        .then(() => {
-          console.log("this works")
+        .then((res) => {
+          alert(res.data)
         })
-        .catch((e) => {
-          console.log("Error with backend", e)
+        .catch((error) => {
+          alert(error.response.data)
         })
 
 
