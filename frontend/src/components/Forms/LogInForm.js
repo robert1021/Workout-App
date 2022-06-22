@@ -1,7 +1,9 @@
 import "./Forms.css";
 import "./LogInForm.css";
 import { Link } from "react-router-dom";
-import { Container, Stack, Paper, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button, InputAdornment } from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
+import KeyIcon from '@mui/icons-material/Key';
 import { useState } from "react";
 
 export default function LogInForm() {
@@ -46,6 +48,13 @@ export default function LogInForm() {
               id="email-user"
               type="text"
               label="Email or Username"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={emailUserError}
@@ -58,6 +67,13 @@ export default function LogInForm() {
               id="password"
               type="password"
               label="Password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <KeyIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={passwordError}
