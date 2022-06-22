@@ -5,6 +5,7 @@ const AuthController = require('../controllers/AuthController')
 
 router.post('/register', AuthController.register)
 
+router.post('/login', AuthController.login)
 
 router.get('/', (req, res) => {
     res.send("Testing that this works")

@@ -5,6 +5,7 @@ import { Container, Stack, Paper, TextField, Button, InputAdornment } from "@mui
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import { useState } from "react";
+import axios from "axios";
 
 export default function LogInForm() {
   // manage state for input fields
@@ -31,6 +32,17 @@ export default function LogInForm() {
     // do something if email and password
     if (emailUser && password) {
       console.log(emailUser, password);
+      axios.post("http://localhost:4000/auth/login",
+        {
+          email: emailUser,
+          password: password
+        }
+      ).then(res => {
+        alert(res.data)
+      })
+      .catch(error => {
+        alert(error.response.data)
+      })
     }
   };
 
