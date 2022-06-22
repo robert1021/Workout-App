@@ -1,5 +1,6 @@
 import "./Forms.css";
-import { Container, Stack, Paper, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button, InputAdornment } from "@mui/material";
+import EmailIcon from '@mui/icons-material/Email';
 import { useState } from "react";
 
 export default function ResetPasswordForm() {
@@ -43,6 +44,13 @@ export default function ResetPasswordForm() {
               id="email"
               type="email"
               label="Email"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={emailError}

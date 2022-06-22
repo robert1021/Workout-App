@@ -1,10 +1,14 @@
-import { Container, Stack, Paper, TextField, Button } from "@mui/material";
+import { Container, Stack, Paper, TextField, Button, InputAdornment } from "@mui/material";
+import EmailIcon from '@mui/icons-material/Email';
+import PersonIcon from '@mui/icons-material/Person';
+import KeyIcon from '@mui/icons-material/Key';
 import "./Forms.css";
 import "./SignUpForm.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 import emailValidation from "./emailValidation.js"
+
 
 
 export default function SignUpForm() {
@@ -97,6 +101,13 @@ export default function SignUpForm() {
               id="user"
               type="text"
               label="Username"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={userError}
@@ -110,6 +121,13 @@ export default function SignUpForm() {
               id="email"
               type="email"
               label="Email"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={emailError}
@@ -123,6 +141,13 @@ export default function SignUpForm() {
               id="password"
               type="password"
               label="Password"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <KeyIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="outlined"
               required
               error={passwordError}
