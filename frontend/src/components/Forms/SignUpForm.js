@@ -8,21 +8,23 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 import emailValidation from "./emailValidation.js"
+import BasicBackdrop from "../Loading/BasicBackdrop";
 
 
 
 export default function SignUpForm() {
 
-  // logic needs to be done to determine what error to show for helper text
-  // these variables are for testing purposes
-  const usernameHelperText = 'testing error username'
-  const emailHelperText = 'testing error email'
-  const passwordHelperText = 'testing error password'
+  // default helpertext if nothing entered
+  const usernameHelperText = 'Please enter a username'
+  const emailHelperText = 'Please enter an email'
+  const passwordHelperText = 'Please enter a password'
 
   let isValidEmail = false
+  
+  
+  const [triggerBackDrop, setTriggerBackDrop] = useState(false)
 
-
-
+  
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
@@ -31,20 +33,25 @@ export default function SignUpForm() {
   const [userError, setUserError] = useState(false)
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
+  const [userErrorMsg, setUserErrorMsg] = useState('')
   const [emailErrorMsg, setEmailErrorMsg] = useState('')
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setTriggerBackDrop(false)
     // set all inputs false so red outline goes away
     setUserError(false)
     setEmailError(false)
     setPasswordError(false)
+    setUserErrorMsg('')
     setEmailErrorMsg('')
     isValidEmail = true
+    
 
     if (user === "") {
       setUserError(true)
+      setUserErrorMsg(usernameHelperText)
     }
 
     // check if email empty and valid
@@ -74,15 +81,27 @@ export default function SignUpForm() {
           password: password
         })
         .then((res) => {
-          alert(res.data)
+          
+          if (res.data === 'Registration Complete!') {
+            
+            // turn on the loading backdrop
+             setTriggerBackDrop(true)
+            //  setTimeout(() => setBackDrop(false), 3000)
+             // should redirect to a new page after fake loading done
+             
+          }
+
         })
         .catch((error) => {
-          alert(error.response.data)
+
+          if (error.response.data === 'Username already taken') {
+            setUserErrorMsg(error.response.data)
+            setUserError(true)
+          } else if (error.response.data === 'Email already taken') {
+            setEmailErrorMsg(error.response.data)
+            setEmailError(true)
+          }
         })
-
-
-
-
 
     }
   };
@@ -111,7 +130,7 @@ export default function SignUpForm() {
               variant="outlined"
               required
               error={userError}
-              helperText={userError ? usernameHelperText : null}
+              helperText={userErrorMsg}
             />
           </div>
           <div className="form-group">
@@ -158,6 +177,7 @@ export default function SignUpForm() {
             <Button type="submit" variant="contained" size="large" className="form-button">
               Sign up
             </Button>
+
           </Stack>
           <h3>
             Already have an account?
@@ -165,6 +185,7 @@ export default function SignUpForm() {
           </h3>
         </form>
       </Paper>
+      {triggerBackDrop && <BasicBackdrop timer={2000}/>}
     </Container>
   );
 }
