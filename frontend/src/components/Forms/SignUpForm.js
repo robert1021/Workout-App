@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 import emailValidation from "./emailValidation.js"
-import BasicBackdrop from "../Loading/BasicBackdrop";
-
 
 
 export default function SignUpForm() {
@@ -20,11 +18,7 @@ export default function SignUpForm() {
   const passwordHelperText = 'Please enter a password'
 
   let isValidEmail = false
-  
-  
-  const [triggerBackDrop, setTriggerBackDrop] = useState(false)
 
-  
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
@@ -39,7 +33,6 @@ export default function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTriggerBackDrop(false)
     // set all inputs false so red outline goes away
     setUserError(false)
     setEmailError(false)
@@ -47,7 +40,7 @@ export default function SignUpForm() {
     setUserErrorMsg('')
     setEmailErrorMsg('')
     isValidEmail = true
-    
+
 
     if (user === "") {
       setUserError(true)
@@ -81,14 +74,12 @@ export default function SignUpForm() {
           password: password
         })
         .then((res) => {
-          
+
           if (res.data === 'Registration Complete!') {
-            
-            // turn on the loading backdrop
-             setTriggerBackDrop(true)
-            //  setTimeout(() => setBackDrop(false), 3000)
-             // should redirect to a new page after fake loading done
-             
+
+            console.log(res.data)
+            // should redirect to a new page
+
           }
 
         })
@@ -185,7 +176,7 @@ export default function SignUpForm() {
           </h3>
         </form>
       </Paper>
-      {triggerBackDrop && <BasicBackdrop timer={2000}/>}
+
     </Container>
   );
 }
