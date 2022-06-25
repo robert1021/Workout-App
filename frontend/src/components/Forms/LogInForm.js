@@ -34,7 +34,7 @@ export default function LogInForm() {
       console.log(emailUser, password);
       axios.post("http://localhost:4000/auth/login",
         {
-          email: emailUser,
+          emailOrUser: emailUser,
           password: password
         }
       ).then(res => {

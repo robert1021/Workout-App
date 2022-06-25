@@ -41,10 +41,10 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    const email = req.body.email
+    const emailOrUser = req.body.emailOrUser
     const password = req.body.password
 
-    const user = await User.findOne({email: email})
+const user = await User.findOne({$or: [{email: emailOrUser}, {user: emailOrUser}]})
     if(user == null) {
         return res.status(500).send("User not found")
     }
