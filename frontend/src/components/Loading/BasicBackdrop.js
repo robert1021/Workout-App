@@ -3,7 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useState, useEffect } from "react";
 
 
-export default function SimpleBackdrop({ timer }) {
+export default function BasicBackdrop({ timer }) {
     const [showBackDrop, setShowBackdrop] = useState(true)
 
     useEffect(() => {

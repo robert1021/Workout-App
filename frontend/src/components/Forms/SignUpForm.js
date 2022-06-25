@@ -4,13 +4,19 @@ import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import "./Forms.css";
 import "./SignUpForm.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 import emailValidation from "./emailValidation.js"
+import BasicSnackBar from "../Notifications/BasicSnackBar";
+import BasicBackdrop from "../Loading/BasicBackdrop";
+
+
 
 
 export default function SignUpForm() {
+
+  const nav = useNavigate()
 
   // default helpertext if nothing entered
   const usernameHelperText = 'Please enter a username'
@@ -19,20 +25,34 @@ export default function SignUpForm() {
 
   let isValidEmail = false
 
+  const [severity, setSeverity] = useState('')
+  const [showSnackBar, setShowSnackBar] = useState(false)
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   // mamange state for input error
-  const [userError, setUserError] = useState(false)
+  const [userError, setUserError] = useState()
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const [userErrorMsg, setUserErrorMsg] = useState('')
   const [emailErrorMsg, setEmailErrorMsg] = useState('')
 
 
+  const redirectSuccessfulRegister = () => {
+    // show notification
+    setSeverity('success')
+    setShowSnackBar(true)
+    // should redirect to a new page
+    setTimeout(() => {
+      nav('/profile')
+    }, 3000)
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowSnackBar(false)
     // set all inputs false so red outline goes away
     setUserError(false)
     setEmailError(false)
@@ -56,10 +76,12 @@ export default function SignUpForm() {
       setEmailError(true)
       isValidEmail = false
       setEmailErrorMsg('Invalid email')
+
     }
 
     if (password === "") {
       setPasswordError(true)
+
     }
 
     // do something if all fields filled
@@ -78,7 +100,7 @@ export default function SignUpForm() {
           if (res.data === 'Registration Complete!') {
 
             console.log(res.data)
-            // should redirect to a new page
+            redirectSuccessfulRegister()
 
           }
 
@@ -95,7 +117,8 @@ export default function SignUpForm() {
         })
 
     }
-  };
+  }
+
 
   return (
     <Container>
@@ -175,8 +198,14 @@ export default function SignUpForm() {
             <Link to={"/login"}>Log In</Link>
           </h3>
         </form>
+
+        {showSnackBar && <BasicSnackBar severity={severity} message='Registration Complete!' duration={3000} />}
+        {showSnackBar && <BasicBackdrop timer={3000} />}
+
       </Paper>
 
+
     </Container>
+
   );
 }
