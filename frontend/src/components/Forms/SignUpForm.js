@@ -7,7 +7,7 @@ import "./SignUpForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
-import emailValidation from "./emailValidation.js"
+import { emailValidation, whiteSpaceValidation } from "./formValidation.js"
 import BasicSnackBar from "../Notifications/BasicSnackBar";
 import BasicBackdrop from "../Loading/BasicBackdrop";
 
@@ -23,6 +23,7 @@ export default function SignUpForm() {
   const emailHelperText = 'Please enter an email'
   const passwordHelperText = 'Please enter a password'
 
+  let isValidUser = false
   let isValidEmail = false
 
   const [severity, setSeverity] = useState('')
@@ -59,12 +60,17 @@ export default function SignUpForm() {
     setPasswordError(false)
     setUserErrorMsg('')
     setEmailErrorMsg('')
+    isValidUser = true
     isValidEmail = true
 
 
     if (user === "") {
       setUserError(true)
       setUserErrorMsg(usernameHelperText)
+    } else if (whiteSpaceValidation(user)) {
+      setUserError(true)
+      setUserErrorMsg("Please don't include spaces")
+      isValidUser = false
     }
 
     // check if email empty and valid
@@ -85,7 +91,7 @@ export default function SignUpForm() {
     }
 
     // do something if all fields filled
-    if (user && email && password && isValidEmail) {
+    if (user && email && password && isValidUser && isValidEmail) {
 
       console.log(user, email, password);
 

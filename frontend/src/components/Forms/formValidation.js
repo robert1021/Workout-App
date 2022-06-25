@@ -5,4 +5,9 @@ function emailValidation(email) {
 
 }
 
-export default emailValidation
+function whiteSpaceValidation(username) {
+    const pattern = /\s/
+    return pattern.test(username)
+}
+
+export { emailValidation, whiteSpaceValidation }
