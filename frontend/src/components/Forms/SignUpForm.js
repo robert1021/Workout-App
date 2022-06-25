@@ -23,9 +23,6 @@ export default function SignUpForm() {
   const emailHelperText = 'Please enter an email'
   const passwordHelperText = 'Please enter a password'
 
-  let isValidUser = false
-  let isValidEmail = false
-
   const [severity, setSeverity] = useState('')
   const [showSnackBar, setShowSnackBar] = useState(false)
   // manage state for input fields
@@ -33,11 +30,12 @@ export default function SignUpForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   // mamange state for input error
-  const [userError, setUserError] = useState()
+  const [userError, setUserError] = useState(false)
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const [userErrorMsg, setUserErrorMsg] = useState('')
   const [emailErrorMsg, setEmailErrorMsg] = useState('')
+  const [passErrorMsg, setPassErrorMsg] = useState('')
 
 
   const redirectSuccessfulRegister = () => {
@@ -60,8 +58,10 @@ export default function SignUpForm() {
     setPasswordError(false)
     setUserErrorMsg('')
     setEmailErrorMsg('')
-    isValidUser = true
-    isValidEmail = true
+
+    let isValidUser = true
+    let isValidEmail = true
+    let isValidPassword = true
 
 
     if (user === "") {
@@ -87,11 +87,16 @@ export default function SignUpForm() {
 
     if (password === "") {
       setPasswordError(true)
+      setPassErrorMsg(passwordHelperText)
 
+    } else if (whiteSpaceValidation(password)) {
+      setPasswordError(true)
+      setPassErrorMsg("Please don't include spaces")
+      isValidPassword = false
     }
 
     // do something if all fields filled
-    if (user && email && password && isValidUser && isValidEmail) {
+    if (user && email && password && isValidPassword && isValidUser && isValidEmail) {
 
       console.log(user, email, password);
 
@@ -190,7 +195,7 @@ export default function SignUpForm() {
               variant="outlined"
               required
               error={passwordError}
-              helperText={passwordError ? passwordHelperText : null}
+              helperText={passErrorMsg}
             />
           </div>
           <Stack alignItems="center" className="signup-button">
