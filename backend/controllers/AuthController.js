@@ -50,7 +50,12 @@ const user = await User.findOne({$or: [{email: emailOrUser}, {user: emailOrUser}
     }
     try {
         if(await bcrypt.compare(password, user.password)) {
-            return res.status(200).send("Login Successful!")
+            let token = jwt.sign({user: user.user}, 'secretValue')
+
+            return res.status(200).json({
+                message: "Login Successful!",
+                token: token
+            })
         } else {
             return res.status(500).send("Wrong combination of username and password")
         }
