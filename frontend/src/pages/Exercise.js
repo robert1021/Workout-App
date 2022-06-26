@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Container, Grid, Paper, Box, Typography } from "@mui/material"
 import AddButton from "../components/Buttons/AddButton"
 import ExerciseAccordion from "../components/ExerciseAccordion"
+import AddExerciseModal from "../components/AddExerciseModal"
 
 
 export default function Excerise() {
+
+    const [isModalOpen, setIsOpenModal] = useState(false)
 
     // test data - This should come from our database
     const dataArray = [
@@ -22,6 +26,7 @@ export default function Excerise() {
 
     return (
         <Container>
+            <AddExerciseModal  open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
 
             <Grid container sx={{ marginTop: "15vh" }}>
 
@@ -54,7 +59,7 @@ export default function Excerise() {
 
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" justifyContent="flex-end">
-                                                <AddButton func={() => console.log('Adding exercise')} />
+                                                <AddButton func={() => setIsOpenModal(true)} />
                                             </Box>
                                         </Grid>
 
@@ -71,7 +76,7 @@ export default function Excerise() {
                                         dataArray.map((data, key) => <ExerciseAccordion key={key} title={data.date} />)
                                     }
 
-
+                                    
                                 </Grid>
 
 
@@ -90,8 +95,6 @@ export default function Excerise() {
 
 
             </Grid>
-
-
 
         </Container>
     )
