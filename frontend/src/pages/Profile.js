@@ -23,7 +23,10 @@ export default function Page() {
         }
         catch(error) {
             console.log(error.response.data)
-            nav('/Login')
+            if(error.response.data == 'Authorization Failed!') {
+                nav('/Login')
+            }
+            
 
         }
         
