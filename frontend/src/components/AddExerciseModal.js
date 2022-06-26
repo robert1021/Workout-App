@@ -2,6 +2,7 @@ import { Container, Grid, Paper, Box, Stack, Typography, Backdrop, Button, TextF
 import { useState } from 'react';
 import CircleCheckButton from "./Buttons/CircleCheckButton";
 import CircleExitButton from "./Buttons/CircleExitButton";
+import EditButton from "./Buttons/EditButton";
 import AddButton from "./Buttons/AddButton";
 import BasicSearchBar from "./BasicSearchBar";
 
@@ -53,7 +54,7 @@ export default function AddExerciseModal({ open, func }) {
 
                                 <Grid container>
                                     <Grid item xs={8}>
-                                        <BasicSearchBar size={"normal"} />
+                                        <BasicSearchBar size={"normal"} label={'Search exercise'}/>
                                     </Grid>
 
                                     <Grid item xs={4}>
@@ -159,7 +160,13 @@ export default function AddExerciseModal({ open, func }) {
 
                                     <Grid item xs={8}>
 
-                                        <AddButton text={'Add Set'} size={'small'} func={() => console.log('added set')}/>
+                                        <Stack
+                                            direction="row"
+                                            alignItems="baseline"
+                                        >
+                                            <AddButton text={'Add Set'} size={'small'} func={() => console.log('added set')} />
+                                            <EditButton variant={'outlined'}  size={'small'}/>
+                                        </Stack>
 
                                     </Grid>
 
@@ -167,16 +174,11 @@ export default function AddExerciseModal({ open, func }) {
                                         <Box display="flex" justifyContent="flex-end" sx={{ marginRight: '10px' }}>
 
                                             <CircleCheckButton size={'small'} />
-                                            
+
 
                                         </Box>
 
                                     </Grid>
-
-
-
-
-
 
                                 </Grid>
 

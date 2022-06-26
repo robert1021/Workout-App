@@ -3,6 +3,7 @@ import { Container, Grid, Paper, Box, Typography } from "@mui/material"
 import AddButton from "../components/Buttons/AddButton"
 import ExerciseAccordion from "../components/ExerciseAccordion"
 import AddExerciseModal from "../components/AddExerciseModal"
+import BasicSearchBar from '../components/BasicSearchBar';
 
 
 export default function Excerise() {
@@ -52,7 +53,7 @@ export default function Excerise() {
                                     <Grid container>
 
                                         <Grid item xs={12} sm={6}>
-                                            <h2>Search box</h2>
+                                            <BasicSearchBar size={'large'} label={'Search workout'}/>
 
                                         </Grid>
 

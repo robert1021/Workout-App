@@ -129,7 +129,7 @@ const top100Films = [
     { title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
 
-export default function BasicSearchBar({ size }) {
+export default function BasicSearchBar({ size, label }) {
     return (
         <Stack spacing={2} sx={{ width: 300 }}>
 
@@ -142,7 +142,7 @@ export default function BasicSearchBar({ size }) {
                     <TextField
                         {...params}
                         size={size}
-                        label="Search exercise..."
+                        label={label}
                         InputProps={{
                             ...params.InputProps,
                             type: 'search',

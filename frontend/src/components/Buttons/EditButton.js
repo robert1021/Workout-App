@@ -4,13 +4,13 @@ import Button from '@mui/material/Button';
 
 
 
-export default function EditButton({ size, width, func }) {
+export default function EditButton({ variant, size, width, func }) {
 
 
 
     return (
         <Stack direction="row" spacing={2}>
-            <Button variant="contained" color="primary" size={size} startIcon={<EditOutlinedIcon />} onClick={func}
+            <Button variant={variant} color="primary" size={size} startIcon={<EditOutlinedIcon />} onClick={func}
              sx={{ width: width, marginBottom: '10px' }}>
                 Edit
             </Button>

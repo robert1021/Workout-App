@@ -40,7 +40,7 @@ export default function ExerciseAccordion({ title }) {
 
                         <Grid item xs={12} sm={4}>
                             <Box display="flex" justifyContent="flex-end">
-                                <EditButton size={'small'} width={'100px'} />
+                                <EditButton variant={'contained'} size={'small'} width={'100px'} />
                             </Box>
                             <Box display="flex" justifyContent="flex-end">
                                 <DeleteButton size={'small'} width={'100px'} />
