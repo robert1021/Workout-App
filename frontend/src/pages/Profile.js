@@ -1,6 +1,29 @@
 import { Container, Grid, Box, Paper, Button, Typography, Divider, TextField } from "@mui/material"
+import React, { useEffect } from "react"
+import { useGlobalState } from "../components/Forms/LogInForm"
+import axios from "axios"
 
 export default function Page() {
+    const token = useGlobalState('jwtToken')[0]
+
+    useEffect(() => {
+        GetProfileData()
+    }, [])
+
+    const GetProfileData = async () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+        try {
+            const res = await axios.get("http://localhost:4000/profile", {headers: headers})
+            console.log(res.data)
+        }
+        catch(error) {
+            console.log(error.response.data)
+        }
+        
+    }
     return (
         <Container>
             <Grid container sx={{ marginTop: "15vh" }} spacing={1}>
