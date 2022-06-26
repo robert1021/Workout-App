@@ -25,9 +25,9 @@ export default function Excerise() {
     ]
 
     return (
-        
+
         <Container>
-            <AddExerciseModal  open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
+            <AddExerciseModal open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
 
             <Grid container sx={{ marginTop: "15vh" }}>
 
@@ -58,7 +58,7 @@ export default function Excerise() {
 
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" justifyContent="flex-end">
-                                                <AddButton text={'Add Exercise'} size={'large'} func={() => setIsOpenModal(true)} />
+                                                <AddButton text={'Add Exercise'} size={'large'} func={() => setIsOpenModal(true)}/>
                                             </Box>
                                         </Grid>
 

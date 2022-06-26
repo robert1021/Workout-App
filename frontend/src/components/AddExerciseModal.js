@@ -58,7 +58,7 @@ export default function AddExerciseModal({ open, func }) {
                                     </Grid>
 
                                     <Grid item xs={4}>
-                                        <Box display="flex" justifyContent="flex-end">
+                                        <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '5px', marginRight: '10px'}}>
                                             <CircleExitButton size={'small'} func={func} />
                                         </Box>
                                     </Grid>
@@ -87,48 +87,64 @@ export default function AddExerciseModal({ open, func }) {
 
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
 
-                                <Stack
-                                    direction="row"
-                                    justifyContent="space-evenly"
-                                    alignItems="baseline"
-                                    spacing={1}
-                                >
-                                    <h2>Weight</h2>
-                                    <TextField></TextField>
 
-                                </Stack>
+                                <Grid container>
 
-                            </Grid>
+                                    <Grid item xs={6}>
+                                    <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                            <Typography variant="h4">Weight</Typography>
+                                        </Box>
 
-                            <Grid item xs={12}>
+                                    </Grid>
 
-                                <Stack
-                                    direction="row"
-                                    justifyContent="space-evenly"
-                                    alignItems="baseline"
-                                    spacing={1}
-                                >
-                                    <h2>Reps</h2>
-                                    <TextField></TextField>
+                                    <Grid item xs={6}>
+                                        <TextField></TextField>
 
-                                </Stack>
+                                    </Grid>
+
+                                </Grid>
 
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
 
-                                <Stack
-                                    direction="row"
-                                    justifyContent="space-evenly"
-                                    alignItems="baseline"
-                                    spacing={1}
-                                >
-                                    <h2>RPE</h2>
-                                    <TextField></TextField>
+                                <Grid container>
 
-                                </Stack>
+                                    <Grid item xs={6}>
+                                    <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                            <Typography variant="h4">Reps</Typography>
+                                        </Box>
+
+                                    </Grid>
+
+                                    <Grid item xs={6}>
+                                        <TextField></TextField>
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
+
+
+                                <Grid container>
+
+                                    <Grid item xs={6}>
+                                        <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                            <Typography variant="h4">RPE</Typography>
+                                        </Box>
+                                    </Grid>
+
+                                    <Grid item xs={6}>
+                                        <TextField></TextField>
+
+                                    </Grid>
+
+                                </Grid>
 
                             </Grid>
 
