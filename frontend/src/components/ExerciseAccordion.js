@@ -19,8 +19,8 @@ export default function ExerciseAccordion({ title }) {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
-                >
-                    <Typography variant="h5" sx={{ width: '33%', flexShrink: 0 }}>
+                >   
+                    <Typography variant="h5" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline'}}>
                         {title}
                     </Typography>
                     <Typography sx={{ color: 'text.secondary' }}>Put something else here! </Typography>
