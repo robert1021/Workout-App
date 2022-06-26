@@ -25,11 +25,11 @@ export default function Excerise() {
     ]
 
     return (
+        
         <Container>
             <AddExerciseModal  open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
 
             <Grid container sx={{ marginTop: "15vh" }}>
-
 
                 <Grid item xs={12} style={{ textAlign: "center", marginBottom: '1vh' }}>
                     <Paper sx={{ backgroundColor: 'whitesmoke' }} elevation={3}>
@@ -56,13 +56,11 @@ export default function Excerise() {
 
                                         </Grid>
 
-
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" justifyContent="flex-end">
-                                                <AddButton func={() => setIsOpenModal(true)} />
+                                                <AddButton text={'Add Exercise'} size={'large'} func={() => setIsOpenModal(true)} />
                                             </Box>
                                         </Grid>
-
 
                                     </Grid>
 
@@ -76,23 +74,15 @@ export default function Excerise() {
                                         dataArray.map((data, key) => <ExerciseAccordion key={key} title={data.date} />)
                                     }
 
-                                    
                                 </Grid>
-
 
                             </Grid>
 
-
                         </Container>
-
 
                     </Paper>
 
-
                 </Grid>
-
-
-
 
             </Grid>
 
