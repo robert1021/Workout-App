@@ -8,6 +8,9 @@ import { useState } from "react";
 import axios from "axios";
 import BasicSnackBar from "../Notifications/BasicSnackBar";
 import BasicBackdrop from "../Loading/BasicBackdrop";
+import { createGlobalState } from 'react-hooks-global-state';
+
+export const { setGlobalState, useGlobalState } = createGlobalState({ jwtToken: null });
 
 export default function LogInForm() {
 
@@ -24,6 +27,7 @@ export default function LogInForm() {
   const [passwordError, setPasswordError] = useState(false);
   const [emailUserErrorMsg, setEmailUserErrorMsg] = useState('');
   const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+
 
   const redirectSuccessfulRegister = () => {
     // show notification
@@ -63,7 +67,7 @@ export default function LogInForm() {
           password: password
         }
       ).then(res => {
-
+        setGlobalState("jwtToken", res.data.token)
         redirectSuccessfulRegister()
 
       })
