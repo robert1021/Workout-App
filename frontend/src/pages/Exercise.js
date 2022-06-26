@@ -1,23 +1,23 @@
-import { Container, Grid, Box, Paper, Button, Typography, Divider, TextField, useScrollTrigger } from "@mui/material"
-import AddButton from "../components/AddButton"
-import ControlledAccordion from "../components/ControlledAccordion"
+import { Container, Grid, Paper, Box, Typography } from "@mui/material"
+import AddButton from "../components/Buttons/AddButton"
+import ExerciseAccordion from "../components/ExerciseAccordion"
 
 
 export default function Excerise() {
 
     // test data - This should come from our database
     const dataArray = [
-        { date: 'Saturday June 25 2022'},
-        { date: 'Friday June 24 2022'},
-        { date: 'Wednesday June 22 2022'},
-        { date: 'Tuesday June 21 2022'},
-        { date: 'Monday June 20 2022'},
-        { date: 'Thursday June 16 2022'},
-        { date: 'Wednesday June 15 2022'},
-        { date: 'Monday June 14 2022'},
-        { date: 'Friday June 3 2022'},
-        { date: 'Thursday June 2 2022'},
-        { date: 'Monday May 30 2022'},
+        { date: 'Saturday June 25 2022' },
+        { date: 'Friday June 24 2022' },
+        { date: 'Wednesday June 22 2022' },
+        { date: 'Tuesday June 21 2022' },
+        { date: 'Monday June 20 2022' },
+        { date: 'Thursday June 16 2022' },
+        { date: 'Wednesday June 15 2022' },
+        { date: 'Monday June 14 2022' },
+        { date: 'Friday June 3 2022' },
+        { date: 'Thursday June 2 2022' },
+        { date: 'Monday May 30 2022' },
     ]
 
     return (
@@ -53,8 +53,9 @@ export default function Excerise() {
 
 
                                         <Grid item xs={12} sm={6}>
-                                            <AddButton func={() => console.log('Adding exercise')}/>
-
+                                            <Box display="flex" justifyContent="flex-end">
+                                                <AddButton func={() => console.log('Adding exercise')} />
+                                            </Box>
                                         </Grid>
 
 
@@ -63,11 +64,11 @@ export default function Excerise() {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    
+
                                     {/* accordion components will be dynamically created here  */}
-                                    
+
                                     {
-                                        dataArray.map((data, key) => <ControlledAccordion key={key} title={data.date}/>)
+                                        dataArray.map((data, key) => <ExerciseAccordion key={key} title={data.date} />)
                                     }
 
 

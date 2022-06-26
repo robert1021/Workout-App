@@ -8,7 +8,7 @@ export default function AddButton({func}) {
 
     return (
         <Stack direction="row" spacing={2}>
-            <Button variant="contained" startIcon={<AddCircleOutlineOutlinedIcon />} onClick={func}>
+            <Button variant="contained" color="success" size="large" startIcon={<AddCircleOutlineOutlinedIcon />} onClick={func}>
                 Add
             </Button>
         </Stack>
