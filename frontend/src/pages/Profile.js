@@ -2,9 +2,11 @@ import { Container, Grid, Box, Paper, Button, Typography, Divider, TextField } f
 import React, { useEffect } from "react"
 import { useGlobalState } from "../components/Forms/LogInForm"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 export default function Page() {
     const token = useGlobalState('jwtToken')[0]
+    const nav = useNavigate()
 
     useEffect(() => {
         GetProfileData()
@@ -21,6 +23,8 @@ export default function Page() {
         }
         catch(error) {
             console.log(error.response.data)
+            nav('/Login')
+
         }
         
     }
