@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CircleCheckButton from "./Buttons/CircleCheckButton";
 import CircleExitButton from "./Buttons/CircleExitButton";
 import AddButton from "./Buttons/AddButton";
+import BasicSearchBar from "./BasicSearchBar";
 
 const MODAL_STYLES = {
     position: 'fixed',
@@ -17,8 +18,6 @@ const MODAL_STYLES = {
 const time = new Date().toLocaleString().split(', ');
 const date = time[0]
 const currlocal = time[1]
-
-console.log(time);
 
 
 export default function AddExerciseModal({ open, func }) {
@@ -47,18 +46,18 @@ export default function AddExerciseModal({ open, func }) {
             >
 
                 <Container style={MODAL_STYLES}>
-                    <Paper elevation={3}>
-                        <Grid container>
+                    <Paper elevation={3} >
+                        <Grid container sx={{ paddingLeft: '10px', paddingRight: '10px' }}>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sx={{ marginTop: '10px', marginBottom: '5px' }}>
 
                                 <Grid container>
                                     <Grid item xs={8}>
-                                        <h2>Exercise Name</h2>
+                                        <BasicSearchBar size={"normal"} />
                                     </Grid>
 
                                     <Grid item xs={4}>
-                                        <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '5px', marginRight: '10px'}}>
+                                        <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '5px' }}>
                                             <CircleExitButton size={'small'} func={func} />
                                         </Box>
                                     </Grid>
@@ -87,13 +86,13 @@ export default function AddExerciseModal({ open, func }) {
 
                             </Grid>
 
-                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
+                            <Grid item xs={12} sx={{ marginTop: '10px' }}>
 
 
                                 <Grid container>
 
                                     <Grid item xs={6}>
-                                    <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
                                             <Typography variant="h4">Weight</Typography>
                                         </Box>
 
@@ -108,12 +107,12 @@ export default function AddExerciseModal({ open, func }) {
 
                             </Grid>
 
-                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
+                            <Grid item xs={12} sx={{ marginTop: '10px' }}>
 
                                 <Grid container>
 
                                     <Grid item xs={6}>
-                                    <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
                                             <Typography variant="h4">Reps</Typography>
                                         </Box>
 
@@ -128,13 +127,13 @@ export default function AddExerciseModal({ open, func }) {
 
                             </Grid>
 
-                            <Grid item xs={12} sx={{ marginTop: '10px'}}>
+                            <Grid item xs={12} sx={{ marginTop: '10px' }}>
 
 
                                 <Grid container>
 
                                     <Grid item xs={6}>
-                                        <Box display="flex" justifyContent="flex-end" sx={{paddingRight: '25%'}}>
+                                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
                                             <Typography variant="h4">RPE</Typography>
                                         </Box>
                                     </Grid>
@@ -148,19 +147,28 @@ export default function AddExerciseModal({ open, func }) {
 
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sx={{ paddingBottom: '10px', paddingTop: '10px' }}>
+
+                                <Divider />
+
+                            </Grid>
+
+                            <Grid item xs={12} sx={{ marginBottom: '5px' }}>
 
                                 <Grid container>
 
                                     <Grid item xs={8}>
 
-                                        <AddButton text={'Add Set'} size={'small'} />
+                                        <AddButton text={'Add Set'} size={'small'} func={() => console.log('added set')}/>
 
                                     </Grid>
 
                                     <Grid item xs={4}>
-                                        <Box display="flex" justifyContent="flex-end">
+                                        <Box display="flex" justifyContent="flex-end" sx={{ marginRight: '10px' }}>
+
                                             <CircleCheckButton size={'small'} />
+                                            
+
                                         </Box>
 
                                     </Grid>
