@@ -1,6 +1,23 @@
 const Exercise = require('../models/Exercise')
 const axios = require('axios')
 
+
+const getExerciseNames = async(req, res) => {
+    try {
+        const exercises = await Exercise.find({}, {name:1})
+        if(exercises) {
+            res.status(200).json({
+                exercises: exercises
+            })
+        }
+    }
+    catch {
+        res.status(400).send('Query didnt works')
+    }
+    
+}
+
+
 const addToDatabase = (req, res) => {
     const options = {
         method: 'GET',
@@ -33,5 +50,6 @@ const addToDatabase = (req, res) => {
 }
 
 module.exports = {
-    addToDatabase
+    addToDatabase,
+    getExerciseNames
 }
