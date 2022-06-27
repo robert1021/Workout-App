@@ -23,7 +23,7 @@ export default function BasicSnackBar({ severity, message, duration, trigger }) 
     };
 
     useEffect(() => {
-        if (trigger) {
+        if (trigger !== undefined) {
             setTimeout(() => {
 
                 trigger(false)
