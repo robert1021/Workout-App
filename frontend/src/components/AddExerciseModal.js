@@ -7,6 +7,7 @@ import AddButton from "./Buttons/AddButton";
 import BasicSearchBar from "./BasicSearchBar";
 import BasicSnackBar from "./Notifications/BasicSnackBar";
 
+
 const MODAL_STYLES = {
     position: 'fixed',
     top: '275px',
@@ -22,7 +23,17 @@ const date = time[0]
 const currlocal = time[1]
 
 
+const exercises = [
+    { name: 'Squat' },
+    { name: 'Bench press' },
+    { name: 'Barbell row' },
+    { name: 'Deadlift' }
+]
+
+
+
 export default function AddExerciseModal({ open, func }) {
+
 
     const [backdropOpen, setBackDropOpen] = useState(false);
 
@@ -34,8 +45,27 @@ export default function AddExerciseModal({ open, func }) {
         setBackDropOpen(!backdropOpen);
     };
 
-
     const [showSnackBar, setShowSnackBar] = useState(false)
+
+    const [searchBarValue, setSearchBarValue] = useState('')
+    const [weightValue, setWeightValue] = useState('')
+    const [repsValue, setRepsValue] = useState('')
+    const [rpeValue, setRpeValue] = useState('')
+
+    // array of objects that holds set data
+    const setData = []
+
+    const getSetData = () => {
+        const data = {
+            exercise: searchBarValue,
+            weight: weightValue,
+            reps: repsValue,
+            rpe: rpeValue
+        }
+        setShowSnackBar(true)
+        console.log(data)
+        return data
+    }
 
     if (!open) return null
 
@@ -58,7 +88,7 @@ export default function AddExerciseModal({ open, func }) {
 
                                 <Grid container>
                                     <Grid item xs={8}>
-                                        <BasicSearchBar size={"normal"} label={'Search exercise'} />
+                                        <BasicSearchBar dataset={exercises} datasetSearchKey={'name'} size={"normal"} label={'Search exercise'} setValue={setSearchBarValue} />
                                     </Grid>
 
                                     <Grid item xs={4}>
@@ -104,7 +134,7 @@ export default function AddExerciseModal({ open, func }) {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField></TextField>
+                                        <TextField onChange={(e) => setWeightValue(e.target.value)} />
 
                                     </Grid>
 
@@ -124,7 +154,7 @@ export default function AddExerciseModal({ open, func }) {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField></TextField>
+                                        <TextField onChange={(e) => setRepsValue(e.target.value)} />
 
                                     </Grid>
 
@@ -144,7 +174,7 @@ export default function AddExerciseModal({ open, func }) {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <TextField></TextField>
+                                        <TextField onChange={(e) => setRpeValue(e.target.value)} />
 
                                     </Grid>
 
@@ -168,7 +198,7 @@ export default function AddExerciseModal({ open, func }) {
                                             direction="row"
                                             alignItems="baseline"
                                         >
-                                            <AddButton text={'Add Set'} size={'small'} func={() => setShowSnackBar(true)} />
+                                            <AddButton text={'Add Set'} size={'small'} func={() => setData.push(getSetData())} />
                                             <EditButton variant={'outlined'} size={'small'} />
 
                                         </Stack>
@@ -192,7 +222,7 @@ export default function AddExerciseModal({ open, func }) {
 
                         </Grid>
 
-                        {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={500} trigger={setShowSnackBar}/>}
+                        {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={500} trigger={setShowSnackBar} />}
 
                     </Paper>
 

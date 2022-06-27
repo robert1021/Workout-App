@@ -8,6 +8,7 @@ import BasicSearchBar from '../components/BasicSearchBar';
 export default function Excerise() {
 
     const [isModalOpen, setIsOpenModal] = useState(false)
+    const [searchBarValue, setSearchBarValue] = useState('')
 
     // test data - This should come from our database
     const dataArray = [
@@ -53,7 +54,7 @@ export default function Excerise() {
                                     <Grid container>
 
                                         <Grid item xs={12} sm={6}>
-                                            <BasicSearchBar size={'large'} label={'Search workout'}/>
+                                            <BasicSearchBar dataset={dataArray} datasetSearchKey={'date'} size={'large'} label={'Search workout'} setValue={setSearchBarValue}/>
 
                                         </Grid>
 
