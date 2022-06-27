@@ -5,7 +5,6 @@ import ExerciseAccordion from "../components/ExerciseAccordion"
 import AddExerciseModal from "../components/AddExerciseModal"
 import BasicSearchBar from '../components/BasicSearchBar';
 
-
 export default function Excerise() {
 
     const [isModalOpen, setIsOpenModal] = useState(false)
@@ -28,6 +27,7 @@ export default function Excerise() {
     return (
 
         <Container>
+
             <AddExerciseModal open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
 
             <Grid container sx={{ marginTop: "15vh" }}>

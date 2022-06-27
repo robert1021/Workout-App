@@ -5,6 +5,7 @@ import CircleExitButton from "./Buttons/CircleExitButton";
 import EditButton from "./Buttons/EditButton";
 import AddButton from "./Buttons/AddButton";
 import BasicSearchBar from "./BasicSearchBar";
+import BasicSnackBar from "./Notifications/BasicSnackBar";
 
 const MODAL_STYLES = {
     position: 'fixed',
@@ -33,6 +34,9 @@ export default function AddExerciseModal({ open, func }) {
         setBackDropOpen(!backdropOpen);
     };
 
+
+    const [showSnackBar, setShowSnackBar] = useState(false)
+
     if (!open) return null
 
     return (
@@ -54,7 +58,7 @@ export default function AddExerciseModal({ open, func }) {
 
                                 <Grid container>
                                     <Grid item xs={8}>
-                                        <BasicSearchBar size={"normal"} label={'Search exercise'}/>
+                                        <BasicSearchBar size={"normal"} label={'Search exercise'} />
                                     </Grid>
 
                                     <Grid item xs={4}>
@@ -164,8 +168,9 @@ export default function AddExerciseModal({ open, func }) {
                                             direction="row"
                                             alignItems="baseline"
                                         >
-                                            <AddButton text={'Add Set'} size={'small'} func={() => console.log('added set')} />
-                                            <EditButton variant={'outlined'}  size={'small'}/>
+                                            <AddButton text={'Add Set'} size={'small'} func={() => setShowSnackBar(true)} />
+                                            <EditButton variant={'outlined'} size={'small'} />
+
                                         </Stack>
 
                                     </Grid>
@@ -186,7 +191,11 @@ export default function AddExerciseModal({ open, func }) {
 
 
                         </Grid>
+
+                        {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={500} trigger={setShowSnackBar}/>}
+
                     </Paper>
+
                 </Container>
             </Backdrop>
 
