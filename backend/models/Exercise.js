@@ -20,7 +20,7 @@ const exerciseSchema = new Schema({
     gifUrl: {
         type: String
     }
-})
+}, {timestamps: true})
 
 const Exercise = mongoose.model('Exercise', exerciseSchema)
 
