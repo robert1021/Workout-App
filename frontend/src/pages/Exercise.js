@@ -1,13 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Container, Grid, Paper, Box, Typography } from "@mui/material"
 import AddButton from "../components/Buttons/AddButton"
 import ExerciseAccordion from "../components/ExerciseAccordion"
-import AddExerciseModal from "../components/AddExerciseModal"
 import BasicSearchBar from '../components/BasicSearchBar';
 
 export default function Excerise() {
 
-    const [isModalOpen, setIsOpenModal] = useState(false)
+    const navigate = useNavigate();
+
+    const navigateToAddExercise = () => {
+        
+        navigate('/add-exercise');
+      };
+
     const [searchBarValue, setSearchBarValue] = useState('')
 
     // test data - This should come from our database
@@ -28,8 +34,6 @@ export default function Excerise() {
     return (
 
         <Container>
-
-            <AddExerciseModal open={isModalOpen} setOpen={setIsOpenModal} func={() => setIsOpenModal(false)} />
 
             <Grid container sx={{ marginTop: "15vh" }}>
 
@@ -60,7 +64,7 @@ export default function Excerise() {
 
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" justifyContent="flex-end">
-                                                <AddButton text={'Add Exercise'} size={'large'} func={() => setIsOpenModal(true)}/>
+                                                <AddButton text={'Add Exercise'} size={'large'} func={navigateToAddExercise}/>
                                             </Box>
                                         </Grid>
 

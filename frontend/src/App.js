@@ -10,6 +10,7 @@ import Tools from "./pages/Tools";
 import PasswordReset from "./pages/PasswordReset";
 import CssBaseline from "@mui/material/CssBaseline";
 import Excerise from "./pages/Exercise";
+import AddExercise from "./pages/AddExercise";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/tools" element={<Tools />} />
         <Route path="/exercise" element={<Excerise />} />
+        <Route path="/add-exercise" element={<AddExercise />} />
       </Routes>
     </div>
   );
