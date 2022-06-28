@@ -33,7 +33,7 @@ export default function AddExercise() {
     const [rpeValue, setRpeValue] = useState('')
 
     // array of objects that holds set data
-    const setData = []
+    const [allSetData, setAllSetData] = useState([])
 
     const getSetData = () => {
         const data = {
@@ -53,6 +53,14 @@ export default function AddExercise() {
         
         navigate('/exercise');
       };
+
+    // run this function to send all set data to database 
+    const doneAddingSetData = () => {
+        
+        console.log('adding set data to db')
+        console.log(allSetData)
+        navigateToExercise()
+    }
 
     return (
 
@@ -174,7 +182,7 @@ export default function AddExercise() {
                                     direction="row"
                                     alignItems="baseline"
                                 >
-                                    <AddButton text={'Add Set'} size={'small'} func={() => setData.push(getSetData())} />
+                                    <AddButton text={'Add Set'} size={'small'} func={() => setAllSetData([...allSetData, getSetData()])} />
                                     <EditButton variant={'outlined'} size={'small'} />
 
                                 </Stack>
@@ -184,7 +192,7 @@ export default function AddExercise() {
                             <Grid item xs={4}>
                                 <Box display="flex" justifyContent="flex-end" sx={{ marginRight: '10px' }}>
 
-                                    <CircleCheckButton size={'small'} />
+                                    <CircleCheckButton size={'small'} func={doneAddingSetData} />
 
 
                                 </Box>
