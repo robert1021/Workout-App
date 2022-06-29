@@ -64,7 +64,7 @@ export default function Excerise() {
 
                                         <Grid item xs={12} sm={6}>
                                             <Box display="flex" justifyContent="flex-end">
-                                                <AddButton text={'Add Exercise'} size={'large'} func={navigateToAddExercise}/>
+                                                <AddButton text={'Add Workout'} size={'large'} func={navigateToAddExercise}/>
                                             </Box>
                                         </Grid>
 

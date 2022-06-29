@@ -7,7 +7,7 @@ import EditButton from "../components/Buttons/EditButton";
 import AddButton from "../components/Buttons/AddButton";
 import BasicSearchBar from "../components/BasicSearchBar";
 import BasicSnackBar from "../components/Notifications/BasicSnackBar";
-
+import ExerciseAccordion from "../components/ExerciseAccordion";
 
 const time = new Date().toLocaleString().split(', ');
 const date = time[0]
@@ -20,7 +20,6 @@ const exercises = [
     { name: 'Barbell row' },
     { name: 'Deadlift' }
 ]
-
 
 
 export default function AddExercise() {
@@ -50,21 +49,26 @@ export default function AddExercise() {
     const navigate = useNavigate()
 
     const navigateToExercise = () => {
-        
+
         navigate('/exercise');
-      };
+    };
 
     // run this function to send all set data to database 
     const doneAddingSetData = () => {
-        
+
         console.log('adding set data to db')
         console.log(allSetData)
         navigateToExercise()
     }
 
+    const onClickAddSetHandler = (e) => {
+        setAllSetData([...allSetData, getSetData()])
+
+    }
+
     return (
 
-        <Container sx={{marginTop: '15vh'}}>
+        <Container sx={{ marginTop: '15vh' }}>
             <Paper elevation={3} >
                 <Grid container sx={{ paddingLeft: '10px', paddingRight: '10px' }}>
 
@@ -172,6 +176,17 @@ export default function AddExercise() {
 
                     </Grid>
 
+                    <Grid item xs={12}>
+
+                        {allSetData.map((data, key) => {
+                            return (
+                                <ExerciseAccordion title={data.exercise} key={key}/>
+                            )
+                        })}
+
+
+                    </Grid>
+
                     <Grid item xs={12} sx={{ marginBottom: '5px' }}>
 
                         <Grid container>
@@ -182,7 +197,7 @@ export default function AddExercise() {
                                     direction="row"
                                     alignItems="baseline"
                                 >
-                                    <AddButton text={'Add Set'} size={'small'} func={() => setAllSetData([...allSetData, getSetData()])} />
+                                    <AddButton text={'Add Set'} size={'small'} func={onClickAddSetHandler} />
                                     <EditButton variant={'outlined'} size={'small'} />
 
                                 </Stack>
