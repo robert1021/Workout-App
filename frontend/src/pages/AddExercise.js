@@ -176,18 +176,7 @@ export default function AddExercise() {
 
                     </Grid>
 
-                    <Grid item xs={12}>
-
-                        {allSetData.map((data, key) => {
-                            return (
-                                <ExerciseAccordion title={data.exercise} key={key}/>
-                            )
-                        })}
-
-
-                    </Grid>
-
-                    <Grid item xs={12} sx={{ marginBottom: '5px' }}>
+                    <Grid item xs={12} sx={{ marginBottom: '10px' }}>
 
                         <Grid container>
 
@@ -198,7 +187,7 @@ export default function AddExercise() {
                                     alignItems="baseline"
                                 >
                                     <AddButton text={'Add Set'} size={'small'} func={onClickAddSetHandler} />
-                                    <EditButton variant={'outlined'} size={'small'} />
+                                    
 
                                 </Stack>
 
@@ -218,10 +207,19 @@ export default function AddExercise() {
 
                     </Grid>
 
+                    <Grid item xs={12}>
+
+                        {allSetData.map((data, key) => {
+                            return (
+                                <ExerciseAccordion title={data.exercise} key={key} />
+                            )
+                        })}
+
+                    </Grid>
 
                 </Grid>
 
-                {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={500} trigger={setShowSnackBar} />}
+                {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={250} trigger={setShowSnackBar} />}
 
             </Paper>
 
