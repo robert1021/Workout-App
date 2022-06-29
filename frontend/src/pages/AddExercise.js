@@ -35,8 +35,18 @@ export default function AddExercise() {
     const [allSetData, setAllSetData] = useState([])
 
     const getSetData = () => {
+
+        let count = 1
+
+        for (let set of allSetData) {
+            if (set.exercise === searchBarValue) {
+                count++
+            }
+        }
+
         const data = {
             exercise: searchBarValue,
+            set: count,
             weight: weightValue,
             reps: repsValue,
             rpe: rpeValue
@@ -64,6 +74,23 @@ export default function AddExercise() {
     const onClickAddSetHandler = (e) => {
         setAllSetData([...allSetData, getSetData()])
 
+    }
+
+    const createExerciseAccordion = () => {
+
+        let exercises = []
+        for (let i of allSetData) {
+            if (!exercises.includes(i.exercise))
+                exercises.push(i)
+        }
+
+        console.log(exercises)
+
+        exercises.map((data, key) => {
+            return (
+                <ExerciseAccordion title={data} key={key} />
+            )
+        })
     }
 
     return (
@@ -187,7 +214,7 @@ export default function AddExercise() {
                                     alignItems="baseline"
                                 >
                                     <AddButton text={'Add Set'} size={'small'} func={onClickAddSetHandler} />
-                                    
+
 
                                 </Stack>
 
@@ -210,8 +237,11 @@ export default function AddExercise() {
                     <Grid item xs={12}>
 
                         {allSetData.map((data, key) => {
+
+                            if (data.set > 1) return null
+
                             return (
-                                <ExerciseAccordion title={data.exercise} key={key} />
+                                <ExerciseAccordion title={data.exercise} key={key} allExerciseSetData={allSetData} setAllExerciseSetData={setAllSetData} />
                             )
                         })}
 

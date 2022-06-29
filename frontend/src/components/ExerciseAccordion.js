@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { Grid, Box, Typography, Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
+import { Grid, Box, Typography, Accordion, AccordionDetails, AccordionSummary, TextField } from "@mui/material"
+import ExerciseTextfieldsGrid from "./ExerciseTextfieldsGrid";
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteButton from "./Buttons/DeleteButton";
 import EditButton from "./Buttons/EditButton";
 
-export default function ExerciseAccordion({ title, exerciseSetData }) {
+export default function ExerciseAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
+
+
+
+
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -19,17 +24,27 @@ export default function ExerciseAccordion({ title, exerciseSetData }) {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
-                >   
-                    <Typography variant="h5" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline'}}>
+                >
+                    <Typography variant="h5" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline' }}>
                         {title}
                     </Typography>
                     <Typography sx={{ color: 'text.secondary' }}>Put something else here! </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Grid container>
+
+                    {/* <ExerciseTextfieldsGrid /> */}
 
 
-                        <Grid item xs={12} sm={8}>
+                    {allExerciseSetData.map((data, key) => {
+
+                        if (data.exercise !== title) return null
+
+                        return (
+                            <Typography key={key}>{data.set}</Typography>
+                        )
+                    })}
+
+                    {/* <Grid item xs={12} sm={8}>
 
                             <Typography>
                                 All exercises done for the day will go here. They should be listed out specifying weight, sets, and reps.
@@ -46,9 +61,8 @@ export default function ExerciseAccordion({ title, exerciseSetData }) {
                                 <DeleteButton size={'small'} width={'100px'} />
                             </Box>
 
-                        </Grid>
+                        </Grid> */}
 
-                    </Grid>
 
                 </AccordionDetails>
             </Accordion>
