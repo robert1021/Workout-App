@@ -66,7 +66,6 @@ export default function AddExercise() {
     // run this function to send all set data to database 
     const doneAddingSetData = () => {
 
-        console.log('adding set data to db')
         console.log(allSetData)
         navigateToExercise()
     }
@@ -133,7 +132,7 @@ export default function AddExercise() {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField onChange={(e) => setWeightValue(e.target.value)} />
+                                <TextField onBlur={(e) => setWeightValue(e.target.value)} />
 
                             </Grid>
 
@@ -153,7 +152,7 @@ export default function AddExercise() {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField onChange={(e) => setRepsValue(e.target.value)} />
+                                <TextField onBlur={(e) => setRepsValue(e.target.value)} />
 
                             </Grid>
 
@@ -173,7 +172,7 @@ export default function AddExercise() {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <TextField onChange={(e) => setRpeValue(e.target.value)} />
+                                <TextField onBlur={(e) => setRpeValue(e.target.value)} />
 
                             </Grid>
 
