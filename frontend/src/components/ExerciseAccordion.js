@@ -1,19 +1,30 @@
 import { useState } from "react";
-import { Typography, Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material"
+import { Typography, Accordion, AccordionDetails, AccordionSummary, Divider, Grid } from "@mui/material"
 import ExerciseTextFieldsGrid from "./ExerciseTextfieldsGrid"
 import ExerciseTotalVolume from "./ExerciseTotalVolume";
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DeleteButton from "./Buttons/DeleteButton"
+import EditButton from "./Buttons/EditButton";
+
 
 
 export default function ExerciseAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
 
+    // handle the state of all TextFields - enabled or disabled
+    const [inputDisabled, setInputDisabled] = useState(true)
 
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+
+    const handleEditButtonClick = (e) => {
+        setInputDisabled(!inputDisabled)
+    }
+
 
     return (
         <div style={{ marginTop: '2vh', marginBottom: '1vh' }}>
@@ -26,9 +37,22 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                     <Typography variant="h4" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline' }}>
                         {title}
                     </Typography>
-                    <ExerciseTotalVolume title={title} allExerciseSetData={allExerciseSetData}/>
+                    <ExerciseTotalVolume title={title} allExerciseSetData={allExerciseSetData} />
                 </AccordionSummary>
                 <AccordionDetails>
+
+                    <Grid container>
+
+                        <Grid item xs={12}>
+                            
+                            <EditButton func={handleEditButtonClick}/>
+
+
+                        </Grid>
+
+
+
+                    </Grid>
 
                     {allExerciseSetData.map((data, key) => {
 
@@ -36,17 +60,26 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
 
                         return (
                             <div key={key}>
-                                <Typography variant="h4">{`Set ${data.set}`}</Typography>
+                                <Grid container>
+
+                                    <Grid item xs={6}>
+                                        <Typography variant="h4">{`Set ${data.set}`}</Typography>
+
+                                    </Grid>
+
+                                    <Grid item xs={6}>
+                                        <DeleteButton />
+                                    </Grid>
+                                </Grid>
+
                                 <Divider />
                                 <ExerciseTextFieldsGrid
-                                    
+                                    isDisabled={inputDisabled}
                                     dataset={data}
-                                    
                                     allExerciseSetData={allExerciseSetData}
                                     setAllExerciseSetData={setAllExerciseSetData}
                                 />
                             </div>
-
 
                         )
                     })}

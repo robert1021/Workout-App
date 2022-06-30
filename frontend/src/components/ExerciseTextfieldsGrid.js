@@ -3,13 +3,13 @@ import { Grid, Box, Typography, TextField } from "@mui/material"
 
 
 
-export default function ExerciseTextfieldsGrid( dataset, allExerciseSetData, setAllExerciseSetData ) {
+export default function ExerciseTextfieldsGrid( { dataset, isDisabled, allExerciseSetData, setAllExerciseSetData }) {
 
-    const exercise = dataset.dataset.exercise
-    const set = dataset.dataset.set
-    const weight = dataset.dataset.weight
-    const reps = dataset.dataset.reps
-    const rpe = dataset.dataset.rpe
+    const exercise = dataset.exercise
+    const set = dataset.set
+    const weight = dataset.weight
+    const reps = dataset.reps
+    const rpe = dataset.rpe
 
     return (
 
@@ -24,7 +24,7 @@ export default function ExerciseTextfieldsGrid( dataset, allExerciseSetData, set
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled defaultValue={weight}/>
+                        <TextField disabled={isDisabled} defaultValue={weight}/>
 
                     </Grid>
                 </Grid>
@@ -41,7 +41,7 @@ export default function ExerciseTextfieldsGrid( dataset, allExerciseSetData, set
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled defaultValue={reps} />
+                        <TextField disabled={isDisabled} defaultValue={reps} />
 
                     </Grid>
                 </Grid>
@@ -57,7 +57,7 @@ export default function ExerciseTextfieldsGrid( dataset, allExerciseSetData, set
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled defaultValue={rpe} />
+                        <TextField disabled={isDisabled} defaultValue={rpe} />
 
                     </Grid>
                 </Grid>
