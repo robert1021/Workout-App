@@ -4,7 +4,7 @@ import { Typography, Accordion, AccordionDetails, AccordionSummary } from "@mui/
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-export default function ExerciseAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
+export default function WorkoutAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
 
 
     const [expanded, setExpanded] = useState(false);
@@ -31,14 +31,14 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                     {/* <ExerciseTextfieldsGrid /> */}
 
 
-                    {allExerciseSetData.map((data, key) => {
+                    {/* {allExerciseSetData.map((data, key) => {
 
                         if (data.exercise !== title) return null
 
                         return (
                             <Typography key={key}>{data.set}</Typography>
                         )
-                    })}
+                    })} */}
 
                     {/* <Grid item xs={12} sm={8}>
 

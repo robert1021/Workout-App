@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Container, Grid, Paper, Box, Typography } from "@mui/material"
 import AddButton from "../components/Buttons/AddButton"
-import ExerciseAccordion from "../components/ExerciseAccordion"
+import WorkoutAccordion from '../components/WorkoutAccordion';
 import BasicSearchBar from '../components/BasicSearchBar';
 
 export default function Excerise() {
@@ -77,7 +77,7 @@ export default function Excerise() {
                                     {/* accordion components will be dynamically created here  */}
 
                                     {
-                                        dataArray.map((data, key) => <ExerciseAccordion key={key} title={data.date} />)
+                                        dataArray.map((data, key) => <WorkoutAccordion key={key} title={data.date} />)
                                     }
 
                                 </Grid>
