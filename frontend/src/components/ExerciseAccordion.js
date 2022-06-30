@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Typography, Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
+import { Typography, Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material"
+import ExerciseTextFieldsGrid from "./ExerciseTextfieldsGrid"
+import ExerciseTotalVolume from "./ExerciseTotalVolume";
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -21,22 +23,31 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
-                    <Typography variant="h5" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline' }}>
+                    <Typography variant="h4" sx={{ width: '33%', flexShrink: 0, textDecorationLine: 'underline' }}>
                         {title}
                     </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>Put something else here! </Typography>
+                    <ExerciseTotalVolume title={title} allExerciseSetData={allExerciseSetData}/>
                 </AccordionSummary>
                 <AccordionDetails>
-
-                    {/* <ExerciseTextfieldsGrid /> */}
-
 
                     {allExerciseSetData.map((data, key) => {
 
                         if (data.exercise !== title) return null
 
                         return (
-                            <Typography key={key}>{data.set}</Typography>
+                            <div key={key}>
+                                <Typography variant="h4">{`Set ${data.set}`}</Typography>
+                                <Divider />
+                                <ExerciseTextFieldsGrid
+                                    
+                                    dataset={data}
+                                    
+                                    allExerciseSetData={allExerciseSetData}
+                                    setAllExerciseSetData={setAllExerciseSetData}
+                                />
+                            </div>
+
+
                         )
                     })}
 

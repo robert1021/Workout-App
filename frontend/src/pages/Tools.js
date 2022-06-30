@@ -63,6 +63,15 @@ export default function Tools() {
 
                                 </Grid>
 
+                                <Grid item xs={12} md={6}>
+                                    <ActionAreaCard
+                                        image={placeholder}
+                                        title={'Exercises'}
+                                        description={'Short description of tool goes here...'}
+                                    />
+
+                                </Grid>
+
                             </Grid>
 
 

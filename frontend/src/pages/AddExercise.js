@@ -52,7 +52,7 @@ export default function AddExercise() {
             rpe: rpeValue
         }
         setShowSnackBar(true)
-        console.log(data)
+
         return data
     }
 
@@ -76,22 +76,6 @@ export default function AddExercise() {
 
     }
 
-    const createExerciseAccordion = () => {
-
-        let exercises = []
-        for (let i of allSetData) {
-            if (!exercises.includes(i.exercise))
-                exercises.push(i)
-        }
-
-        console.log(exercises)
-
-        exercises.map((data, key) => {
-            return (
-                <ExerciseAccordion title={data} key={key} />
-            )
-        })
-    }
 
     return (
 
