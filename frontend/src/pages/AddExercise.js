@@ -8,6 +8,7 @@ import AddButton from "../components/Buttons/AddButton";
 import BasicSearchBar from "../components/BasicSearchBar";
 import BasicSnackBar from "../components/Notifications/BasicSnackBar";
 import ExerciseAccordion from "../components/ExerciseAccordion";
+import axios from "axios";
 
 const time = new Date().toLocaleString().split(', ');
 const date = time[0]
@@ -64,9 +65,16 @@ export default function AddExercise() {
     };
 
     // run this function to send all set data to database 
-    const doneAddingSetData = () => {
-
+    const doneAddingSetData = async () => {
         console.log(allSetData)
+        try {
+            await axios.post("http://localhost:4000/workout/log", {log: allSetData})
+            console.log("Workout posted")
+        }
+        catch {
+            console.log("Nope, not working")
+        }
+        
         navigateToExercise()
     }
 

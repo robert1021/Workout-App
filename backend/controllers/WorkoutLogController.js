@@ -2,6 +2,12 @@ const Exercise = require('../models/Exercise')
 const axios = require('axios')
 
 
+const logWorkout = async (req, res) => {
+    const log = req.body.addSetData
+    res.status(200).send(log)
+}   
+
+
 const getExerciseNames = async(req, res) => {
     try {
         const exercises = await Exercise.find({}, {name:1})
@@ -51,5 +57,6 @@ const addToDatabase = (req, res) => {
 
 module.exports = {
     addToDatabase,
-    getExerciseNames
+    getExerciseNames,
+    logWorkout
 }
