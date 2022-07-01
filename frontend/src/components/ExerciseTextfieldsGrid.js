@@ -1,15 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Box, Typography, TextField } from "@mui/material"
 
 
 
-export default function ExerciseTextfieldsGrid( { dataset, isDisabled, allExerciseSetData, setAllExerciseSetData }) {
+export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allExerciseSetData, setAllExerciseSetData }) {
 
-    const exercise = dataset.exercise
-    const set = dataset.set
-    const weight = dataset.weight
-    const reps = dataset.reps
-    const rpe = dataset.rpe
 
     return (
 
@@ -24,7 +19,7 @@ export default function ExerciseTextfieldsGrid( { dataset, isDisabled, allExerci
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled={isDisabled} defaultValue={weight}/>
+                        <TextField onBlur={func} disabled={isDisabled} value={dataset.weight} />
 
                     </Grid>
                 </Grid>
@@ -41,7 +36,7 @@ export default function ExerciseTextfieldsGrid( { dataset, isDisabled, allExerci
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled={isDisabled} defaultValue={reps} />
+                        <TextField onBlur={func} disabled={isDisabled} value={dataset.reps} />
 
                     </Grid>
                 </Grid>
@@ -57,7 +52,7 @@ export default function ExerciseTextfieldsGrid( { dataset, isDisabled, allExerci
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField disabled={isDisabled} defaultValue={rpe} />
+                        <TextField onBlur={func} disabled={isDisabled} value={dataset.rpe} />
 
                     </Grid>
                 </Grid>

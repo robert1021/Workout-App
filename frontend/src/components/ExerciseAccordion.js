@@ -25,6 +25,20 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
         setInputDisabled(!inputDisabled)
     }
 
+    const handleDeleteButtonClick = (e, key, exercise, set) => {
+        console.log(key)
+        console.log(set)
+        
+        // make a copy
+        let allExerciseSetDataCopy = allExerciseSetData.slice()
+
+
+        allExerciseSetDataCopy.splice(key, 1);
+        setAllExerciseSetData(allExerciseSetDataCopy);
+
+
+    }
+
 
     return (
         <div style={{ marginTop: '2vh', marginBottom: '1vh' }}>
@@ -44,8 +58,8 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                     <Grid container>
 
                         <Grid item xs={12}>
-                            
-                            <EditButton func={handleEditButtonClick}/>
+
+                            <EditButton func={handleEditButtonClick} />
 
 
                         </Grid>
@@ -68,14 +82,16 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <DeleteButton />
+                                        {/* make delete dissapear */}
+                                        <DeleteButton func={(e) => handleDeleteButtonClick(e, key, data.exercise, data.set)} />
                                     </Grid>
                                 </Grid>
 
                                 <Divider />
                                 <ExerciseTextFieldsGrid
-                                    isDisabled={inputDisabled}
                                     dataset={data}
+                                    func={() => console.log(data)}
+                                    isDisabled={inputDisabled}
                                     allExerciseSetData={allExerciseSetData}
                                     setAllExerciseSetData={setAllExerciseSetData}
                                 />
