@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 const profileRoute = require('./routes/profile')
-const workoutRoute = require('./routes/workout')
+const workoutRoute = require('./routes/workoutLog')
 const cors = require('cors')
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
