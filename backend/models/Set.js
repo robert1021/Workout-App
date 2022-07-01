@@ -22,3 +22,7 @@ const setSchema = new Schema({
     }
 
 }, {timestamsps: true})
+
+const Set = mongoose.model('Set', setSchema)
+
+module.exports = Set
