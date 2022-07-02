@@ -1,5 +1,5 @@
 import { Container, Grid, Paper, Box, Stack, Typography, Button, TextField, Divider } from "@mui/material"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CircleCheckButton from "../components/Buttons/CircleCheckButton";
 import CircleExitButton from "../components/Buttons/CircleExitButton";
@@ -26,7 +26,7 @@ const exercises = [
 export default function AddExercise() {
 
     const [showSnackBar, setShowSnackBar] = useState(false)
-
+    const [exercises, setExercises] = useState([])
     const [searchBarValue, setSearchBarValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [repsValue, setRepsValue] = useState('')
@@ -34,6 +34,10 @@ export default function AddExercise() {
 
     // array of objects that holds set data
     const [allSetData, setAllSetData] = useState([])
+
+    useEffect(() => {
+        getExercises()
+    }, [])
 
     const getSetData = () => {
 
@@ -55,6 +59,17 @@ export default function AddExercise() {
         setShowSnackBar(true)
 
         return data
+    }
+
+    const getExercises = async() => {
+        try {
+            const res = await axios.get("http://localhost:4000/workout/getNames")
+            setExercises(res.data.exercises)
+            
+        }
+        catch {
+            console.log("Error getting exercises")
+        }
     }
 
     // use this to get an array of unique values from array of objects
