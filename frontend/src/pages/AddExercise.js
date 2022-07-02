@@ -15,14 +15,6 @@ const date = time[0]
 const currlocal = time[1]
 
 
-const exercises = [
-    { name: 'Squat' },
-    { name: 'Bench press' },
-    { name: 'Barbell row' },
-    { name: 'Deadlift' }
-]
-
-
 export default function AddExercise() {
 
     const [showSnackBar, setShowSnackBar] = useState(false)
@@ -41,15 +33,18 @@ export default function AddExercise() {
 
     const getSetData = () => {
 
+        let id = 0
         let count = 1
 
         for (let set of allSetData) {
+            id ++
             if (set.exercise === searchBarValue) {
                 count++
             }
         }
 
         const data = {
+            id: id,
             exercise: searchBarValue,
             set: count,
             weight: weightValue,

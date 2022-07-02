@@ -25,10 +25,11 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
         setInputDisabled(!inputDisabled)
     }
 
-    const handleDeleteButtonClick = (e, key, exercise, set) => {
+    const handleDeleteButtonClick = (e, data, key, exercise, set) => {
 
         // make a copy
-        let allExerciseSetDataCopy = allExerciseSetData.slice()
+        // let allExerciseSetDataCopy = allExerciseSetData.slice()
+        let allExerciseSetDataCopy = [...allExerciseSetData]
         allExerciseSetDataCopy.splice(key, 1)
 
         // need to renumber sets
@@ -40,15 +41,15 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
         for (let i = 1; i < filterdArray.length; i++) {
             newSetNumbers.push(i)
         }
-        
+
         let count = 1
         for (let i in allExerciseSetDataCopy) {
             if (allExerciseSetDataCopy[i].exercise === exercise) {
                 allExerciseSetDataCopy[i].set = count
-                count ++
+                count++
             }
         }
-        
+
         setAllExerciseSetData(allExerciseSetDataCopy);
     }
 
@@ -74,10 +75,7 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
 
                             <EditButton func={handleEditButtonClick} />
 
-
                         </Grid>
-
-
 
                     </Grid>
 
@@ -86,7 +84,7 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                         if (data.exercise !== title) return null
 
                         return (
-                            <div key={key}>
+                            <div key={data.id}>
                                 <Grid container>
 
                                     <Grid item xs={6}>
@@ -95,8 +93,7 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        {/* make delete dissapear */}
-                                        <DeleteButton func={(e) => handleDeleteButtonClick(e, key, data.exercise, data.set)} />
+                                        <DeleteButton func={(e) => handleDeleteButtonClick(e, data, key, data.exercise, data.set)} />
                                     </Grid>
                                 </Grid>
 

@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { Grid, Box, Typography, TextField } from "@mui/material"
 
 
-
 export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allExerciseSetData, setAllExerciseSetData }) {
 
+    const [weight, setWeight] = useState(dataset.weight)
+    const [reps, setReps] = useState(dataset.reps)
+    const [rpe, setRpe] = useState(dataset.rpe)
 
     return (
 
@@ -12,6 +14,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
 
             <Grid item xs={12} sx={{ marginTop: '10px' }}>
                 <Grid container>
+
                     <Grid item xs={6}>
                         <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
                             <Typography variant="h4">Weight</Typography>
@@ -19,7 +22,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={dataset.weight} />
+                        <TextField onBlur={func} disabled={isDisabled} value={weight} onChange={(e) => setWeight(e.target.value)} />
 
                     </Grid>
                 </Grid>
@@ -36,7 +39,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={dataset.reps} />
+                        <TextField onBlur={func} disabled={isDisabled} value={reps} onChange={(e) => setReps(e.target.value)} />
 
                     </Grid>
                 </Grid>
@@ -52,7 +55,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={dataset.rpe} />
+                        <TextField onBlur={func} disabled={isDisabled} value={rpe} onChange={(e) => setRpe(e.target.value)} />
 
                     </Grid>
                 </Grid>
