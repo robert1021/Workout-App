@@ -1,9 +1,30 @@
 const Exercise = require('../models/Exercise')
 const axios = require('axios')
+const Set = require('../models/Set')
+const Workout = require('../models/Workout')
+const { default: mongoose } = require('mongoose')
 
 
 const logWorkout = async (req, res) => {
-    const log = req.body.addSetData
+    const log = req.body.log
+    try {
+        log.forEach(set => {
+            let doc= new Set({
+                // workoutId: 1,
+                 exercise: set.exercise,
+                 setNum: set.set,
+                 weight: set.weight,
+                 reps: set.reps,
+                 rpe: set.rpe
+            })
+            doc.save()
+            // res.status(200).send("Saving successful")
+        })
+    } 
+    catch {
+        res.status(400).json("Not working")
+    }
+    
     res.status(200).send(log)
 }   
 
