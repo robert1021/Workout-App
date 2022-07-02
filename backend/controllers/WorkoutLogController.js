@@ -2,7 +2,6 @@ const Exercise = require('../models/Exercise')
 const axios = require('axios')
 const Set = require('../models/Set')
 const Workout = require('../models/Workout')
-const { default: mongoose } = require('mongoose')
 
 
 const logWorkout = async (req, res) => {
@@ -55,25 +54,28 @@ const addToDatabase = (req, res) => {
         }
       };
       axios.request(options).then(function (res) {
-          //console.log(response.data);
-          count = 0
-          res.data.forEach(res => {
-              let exercise = new Exercise({
-                  id: res.id,
-                  name: res.name,
-                  bodyPart: res.bodyPart,
-                  target: res.target,
-                  equipment: res.equipment,
-                  gifUrl: res.gifUrl
-              })
-              exercise.save()
+        const arr = getUniqueListBy(res.data, 'name')
+        arr.forEach(res => {
+            let exercise = new Exercise({
+                id: res.id,
+                name: res.name,
+                bodyPart: res.bodyPart,
+                target: res.target,
+                equipment: res.equipment,
+                gifUrl: res.gifUrl
+            })
+            exercise.save()
           })
           
-      }).catch(function (error) {
+    }).catch(function (error) {
           console.error(error);
-      });
+    });
 
-      res.send("okay")
+    res.send("okay")
+}
+
+const getUniqueListBy = (arr, key) => {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 
 module.exports = {
