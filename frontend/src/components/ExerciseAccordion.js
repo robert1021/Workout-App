@@ -28,15 +28,11 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
     const handleDeleteButtonClick = (e, key, exercise, set) => {
         console.log(key)
         console.log(set)
-        
+
         // make a copy
         let allExerciseSetDataCopy = allExerciseSetData.slice()
-
-
-        allExerciseSetDataCopy.splice(key, 1);
+        allExerciseSetDataCopy.splice(key, 1)
         setAllExerciseSetData(allExerciseSetDataCopy);
-
-
     }
 
 

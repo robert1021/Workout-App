@@ -57,6 +57,12 @@ export default function AddExercise() {
         return data
     }
 
+    // use this to get an array of unique values from array of objects
+    // 
+    const getChosenExercises = () => {
+        return [...new Set(allSetData.map((item) => item.exercise))]
+    }
+
     const navigate = useNavigate()
 
     const navigateToExercise = () => {
@@ -68,13 +74,13 @@ export default function AddExercise() {
     const doneAddingSetData = async () => {
         console.log(allSetData)
         try {
-            await axios.post("http://localhost:4000/workout/log", {log: allSetData})
+            await axios.post("http://localhost:4000/workout/log", { log: allSetData })
             console.log("Workout posted")
         }
         catch {
             console.log("Nope, not working")
         }
-        
+
         navigateToExercise()
     }
 
@@ -227,12 +233,12 @@ export default function AddExercise() {
 
                     <Grid item xs={12}>
 
-                        {allSetData.map((data, key) => {
+                        {getChosenExercises().map((data, key) => {
 
-                            if (data.set > 1) return null
+                            // if (data.set > 1) return null
 
                             return (
-                                <ExerciseAccordion title={data.exercise} key={key} allExerciseSetData={allSetData} setAllExerciseSetData={setAllSetData} />
+                                <ExerciseAccordion title={data} key={key} allExerciseSetData={allSetData} setAllExerciseSetData={setAllSetData} />
                             )
                         })}
 
