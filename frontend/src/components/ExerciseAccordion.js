@@ -26,12 +26,29 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
     }
 
     const handleDeleteButtonClick = (e, key, exercise, set) => {
-        console.log(key)
-        console.log(set)
 
         // make a copy
         let allExerciseSetDataCopy = allExerciseSetData.slice()
         allExerciseSetDataCopy.splice(key, 1)
+
+        // need to renumber sets
+        const filterdArray = allExerciseSetDataCopy.filter((item) => {
+            return item.exercise === exercise
+        })
+
+        const newSetNumbers = []
+        for (let i = 1; i < filterdArray.length; i++) {
+            newSetNumbers.push(i)
+        }
+        
+        let count = 1
+        for (let i in allExerciseSetDataCopy) {
+            if (allExerciseSetDataCopy[i].exercise === exercise) {
+                allExerciseSetDataCopy[i].set = count
+                count ++
+            }
+        }
+        
         setAllExerciseSetData(allExerciseSetDataCopy);
     }
 
