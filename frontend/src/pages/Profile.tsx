@@ -1,10 +1,12 @@
+// @ts-nocheck
+
 import { Container, Grid, Box, Paper, Button, Typography, Divider, TextField } from "@mui/material"
 import React, { useEffect } from "react"
 import { useGlobalState } from "../components/Forms/LogInForm"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 
-export default function Page() {
+export const Profile: React.FC = () => {
     const token = useGlobalState('jwtToken')[0]
     const nav = useNavigate()
 

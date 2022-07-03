@@ -6,9 +6,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import { useState } from "react";
 import axios from "axios";
-import BasicSnackBar from "../Notifications/BasicSnackBar";
-import BasicBackdrop from "../Loading/BasicBackdrop";
+import { BasicSnackBar } from "../Notifications/BasicSnackBar";
+import { BasicBackdrop } from "../Loading/BasicBackdrop";
 import { createGlobalState } from 'react-hooks-global-state';
+import React from "react";
 
 export const { setGlobalState, useGlobalState } = createGlobalState({ jwtToken: null });
 
@@ -39,7 +40,7 @@ export default function LogInForm() {
     }, 3000)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setShowSnackBar(false)
     // set both inputs false so red outline goes away

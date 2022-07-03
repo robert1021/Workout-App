@@ -2,6 +2,7 @@ import "./Forms.css";
 import { Container, Stack, Paper, TextField, Button, InputAdornment } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 import { useState } from "react";
+import React from "react";
 
 export default function ResetPasswordForm() {
   // manage state for input fields
@@ -10,7 +11,7 @@ export default function ResetPasswordForm() {
   // mamange state for input error
   const [emailError, setEmailError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     // set both inputs false so red outline goes away
     setEmailError(false);

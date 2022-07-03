@@ -1,5 +1,8 @@
+// @ts-nocheck
+
 import { Container, Grid, Box, Paper, Button, Typography, Divider, TextField } from "@mui/material"
-import ActionAreaCard from "../components/ActionAreaCard"
+import React from "react"
+import { ActionAreaCard } from "../components/ActionAreaCard"
 import placeholder from "../static/images/placeholder-image.png"
 
 export default function Tools() {

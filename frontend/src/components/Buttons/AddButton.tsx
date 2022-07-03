@@ -1,10 +1,16 @@
 import Button from '@mui/material/Button';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Stack from '@mui/material/Stack';
+import React from 'react';
 
-export default function AddButton({text, size, func}) {
 
+interface Props {
+    text?: string,
+    size: "small" | "medium" | "large" | undefined,
+    func: any
+}
 
+export const AddButton: React.FC<Props> = ({text, size, func}) => {
 
     return (
         <Stack direction="row" spacing={2}>

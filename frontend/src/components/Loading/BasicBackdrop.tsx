@@ -1,10 +1,16 @@
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import React from 'react';
 import { useState, useEffect } from "react";
 
 
-export default function BasicBackdrop({ timer }) {
-    const [showBackDrop, setShowBackdrop] = useState(true)
+interface Props {
+    timer: number
+}
+
+
+export const BasicBackdrop: React.FC<Props> = ({ timer }) => {
+    const [showBackDrop, setShowBackdrop] = useState<boolean>(true)
 
     useEffect(() => {
         setTimeout(() => {
