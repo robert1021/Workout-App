@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Typography, Accordion, AccordionDetails, AccordionSummary, Divider, Grid } from "@mui/material"
 import ExerciseTextFieldsGrid from "./ExerciseTextfieldsGrid"
 import ExerciseTotalVolume from "./ExerciseTotalVolume";
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteButton from "./Buttons/DeleteButton"
 import EditButton from "./Buttons/EditButton";
@@ -28,7 +27,6 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
     const handleDeleteButtonClick = (e, data, key, exercise, set) => {
 
         // make a copy
-        // let allExerciseSetDataCopy = allExerciseSetData.slice()
         let allExerciseSetDataCopy = [...allExerciseSetData]
         allExerciseSetDataCopy.splice(key, 1)
 

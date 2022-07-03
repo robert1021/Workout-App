@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Grid, Box, Typography, TextField } from "@mui/material"
 
 
-export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allExerciseSetData, setAllExerciseSetData }) {
+export default function ExerciseTextfieldsGrid({dataset, isDisabled, func, allExerciseSetData, setAllExerciseSetData }) {
 
     const [weight, setWeight] = useState(dataset.weight)
     const [reps, setReps] = useState(dataset.reps)
@@ -10,7 +10,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
 
 
     const handleEdit = (e) => {
-
+      
         let copy = [...allExerciseSetData]
 
         const updated = copy.map((obj) => {

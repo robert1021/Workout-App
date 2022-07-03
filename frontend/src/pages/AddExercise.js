@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CircleCheckButton from "../components/Buttons/CircleCheckButton";
 import CircleExitButton from "../components/Buttons/CircleExitButton";
-import EditButton from "../components/Buttons/EditButton";
 import AddButton from "../components/Buttons/AddButton";
 import BasicSearchBar from "../components/BasicSearchBar";
 import BasicSnackBar from "../components/Notifications/BasicSnackBar";
@@ -17,6 +16,7 @@ const currlocal = time[1]
 
 export default function AddExercise() {
 
+    const [id, setId] = useState(1)
     const [showSnackBar, setShowSnackBar] = useState(false)
     const [exercises, setExercises] = useState([])
     const [searchBarValue, setSearchBarValue] = useState('')
@@ -33,11 +33,11 @@ export default function AddExercise() {
 
     const getSetData = () => {
 
-        let id = 0
+        
         let count = 1
 
         for (let set of allSetData) {
-            id ++
+            // id ++
             if (set.exercise === searchBarValue) {
                 count++
             }
@@ -51,6 +51,9 @@ export default function AddExercise() {
             reps: repsValue,
             rpe: rpeValue
         }
+
+        const newId = id + 1
+        setId(newId)
         setShowSnackBar(true)
 
         return data
