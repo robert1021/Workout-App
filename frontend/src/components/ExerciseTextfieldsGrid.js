@@ -8,6 +8,28 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
     const [reps, setReps] = useState(dataset.reps)
     const [rpe, setRpe] = useState(dataset.rpe)
 
+
+    const handleEdit = (e) => {
+
+        let copy = [...allExerciseSetData]
+
+        const updated = copy.map((obj) => {
+            // if exercise and set
+            if (obj.id === dataset.id) {
+                return {
+                    ...obj,
+                    weight: weight,
+                    reps: reps,
+                    rpe: rpe
+                }   
+            }
+            return obj
+        })
+
+        setAllExerciseSetData(updated)
+
+    }
+
     return (
 
         <Grid container>
@@ -22,7 +44,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={weight} onChange={(e) => setWeight(e.target.value)} />
+                        <TextField onBlur={handleEdit} disabled={isDisabled} value={weight} onChange={(e) => setWeight(e.target.value)} />
 
                     </Grid>
                 </Grid>
@@ -39,7 +61,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={reps} onChange={(e) => setReps(e.target.value)} />
+                        <TextField onBlur={handleEdit} disabled={isDisabled} value={reps} onChange={(e) => setReps(e.target.value)} />
 
                     </Grid>
                 </Grid>
@@ -55,7 +77,7 @@ export default function ExerciseTextfieldsGrid({ dataset, isDisabled, func, allE
                     </Grid>
 
                     <Grid item xs={6}>
-                        <TextField onBlur={func} disabled={isDisabled} value={rpe} onChange={(e) => setRpe(e.target.value)} />
+                        <TextField onBlur={handleEdit} disabled={isDisabled} value={rpe} onChange={(e) => setRpe(e.target.value)} />
 
                     </Grid>
                 </Grid>
