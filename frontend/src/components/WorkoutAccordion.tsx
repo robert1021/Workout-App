@@ -1,15 +1,23 @@
+// @ts-nocheck
+
 import { useState } from "react";
 import { Typography, Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React from "react";
 
 
-export default function WorkoutAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
+interface Props {
+    title: string,
+    allExerciseSetData: any,
+    setAllExerciseSetData: any
+}
+
+export const WorkoutAccordion: React.FC<Props> = ({ title, allExerciseSetData, setAllExerciseSetData }) => {
 
 
     const [expanded, setExpanded] = useState(false);
 
-    const handleChange = (panel) => (event, isExpanded) => {
+    const handleChange = (panel: string | boolean | ((prevState: boolean) => boolean)) => (isExpanded: any) => {
         setExpanded(isExpanded ? panel : false);
     };
 

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Container, Grid, Paper, Box, Typography } from "@mui/material"
-import AddButton from "../components/Buttons/AddButton"
-import WorkoutAccordion from '../components/WorkoutAccordion';
-import BasicSearchBar from '../components/BasicSearchBar';
+import { AddButton } from "../components/Buttons/AddButton"
+import { WorkoutAccordion } from '../components/WorkoutAccordion';
+import { BasicSearchBar } from '../components/BasicSearchBar';
+import React from 'react';
 
-export default function Excerise() {
+export const Excerise: React.FC = () => {
 
     const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ export default function Excerise() {
     const [searchBarValue, setSearchBarValue] = useState('')
 
     // test data - This should come from our database
-    const dataArray = [
+    const dataArray: {date: string}[] = [
         { date: 'Saturday June 25 2022' },
         { date: 'Friday June 24 2022' },
         { date: 'Wednesday June 22 2022' },
@@ -58,7 +59,7 @@ export default function Excerise() {
                                     <Grid container>
 
                                         <Grid item xs={12} sm={6}>
-                                            <BasicSearchBar dataset={dataArray} datasetSearchKey={'date'} size={'large'} label={'Search workout'} setValue={setSearchBarValue}/>
+                                            <BasicSearchBar dataset={dataArray} datasetSearchKey={'date'} size={'normal'} label={'Search workout'} setValue={setSearchBarValue}/>
 
                                         </Grid>
 
@@ -77,7 +78,7 @@ export default function Excerise() {
                                     {/* accordion components will be dynamically created here  */}
 
                                     {
-                                        dataArray.map((data, key) => <WorkoutAccordion key={key} title={data.date} />)
+                                        dataArray.map((data, key) => <WorkoutAccordion key={key} title={data.date} allExerciseSetData={undefined} setAllExerciseSetData={undefined} />)
                                     }
 
                                 </Grid>

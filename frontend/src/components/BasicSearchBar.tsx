@@ -1,16 +1,27 @@
+// @ts-nocheck
+
 import { TextField, Stack, Autocomplete, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
 
 
+interface Props {
+    dataset: any,
+    datasetSearchKey: string,
+    size?: 'small' | 'normal' | undefined,
+    label: string,
+    setValue: any
+}
 
-export default function BasicSearchBar({ dataset, datasetSearchKey, size, label, setValue }) {
+
+export const BasicSearchBar: React.FC<Props> = ({ dataset, datasetSearchKey, size, label, setValue }) => {
 
 
-    const handleTextFieldOnChange = (e) => {
+    const handleTextFieldOnChange = (e: { target: { value: any; }; }) => {
         setValue(e.target.value)
     }
 
-    const handleAutocompleteOnChange = (e) => {
+    const handleAutocompleteOnChange = (e: { target: { innerText: any; }; }) => {
         setValue(e.target.innerText)
     }
 
@@ -22,7 +33,7 @@ export default function BasicSearchBar({ dataset, datasetSearchKey, size, label,
                 freeSolo
                 id="search"
                 disableClearable
-                options={dataset.map((option) => option[datasetSearchKey])}
+                options={dataset.map((option: { [x: string]: any; }) => option[datasetSearchKey])}
                 renderInput={(params) => (
                     <TextField
                         {...params}

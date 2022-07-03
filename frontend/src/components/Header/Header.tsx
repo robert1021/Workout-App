@@ -12,6 +12,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import DrawerLeft from "./DrawerLeft";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export default function Header() {
   const headerStyle = {
@@ -40,7 +41,7 @@ export default function Header() {
   };
 
   // manage state for tabs
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState<boolean>(false);
 
   const theme = useTheme();
   // check if screen is small size

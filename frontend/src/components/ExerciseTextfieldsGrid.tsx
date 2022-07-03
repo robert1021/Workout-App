@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { Grid, Box, Typography, TextField } from "@mui/material"
+import React from "react";
+
+interface Props {
+    // neeed to fix types for objects
+    dataset: any,
+    isDisabled: boolean,
+    allExerciseSetData: any,
+    setAllExerciseSetData: any
+    
+}
 
 
-export default function ExerciseTextfieldsGrid({dataset, isDisabled, func, allExerciseSetData, setAllExerciseSetData }) {
+export const ExerciseTextfieldsGrid: React.FC<Props> = ({dataset, isDisabled, allExerciseSetData, setAllExerciseSetData }) => {
 
     const [weight, setWeight] = useState(dataset.weight)
     const [reps, setReps] = useState(dataset.reps)
     const [rpe, setRpe] = useState(dataset.rpe)
 
 
-    const handleEdit = (e) => {
+    const handleEdit = () => {
       
         let copy = [...allExerciseSetData]
 

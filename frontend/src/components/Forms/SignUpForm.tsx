@@ -7,14 +7,15 @@ import "./SignUpForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
-import { emailValidation, whiteSpaceValidation } from "./formValidation.js"
-import BasicSnackBar from "../Notifications/BasicSnackBar";
-import BasicBackdrop from "../Loading/BasicBackdrop";
+import { emailValidation, whiteSpaceValidation } from "./formValidation"
+import {BasicSnackBar} from "../Notifications/BasicSnackBar";
+import { BasicBackdrop } from "../Loading/BasicBackdrop";
+import React from 'react';
 
 
 
 
-export default function SignUpForm() {
+export const SignUpForm: React.FC = () => {
 
   const nav = useNavigate()
 
@@ -24,15 +25,15 @@ export default function SignUpForm() {
   const passwordHelperText = 'Please enter a password'
 
   const [severity, setSeverity] = useState('')
-  const [showSnackBar, setShowSnackBar] = useState(false)
+  const [showSnackBar, setShowSnackBar] = useState<Boolean>(false)
   // manage state for input fields
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   // mamange state for input error
-  const [userError, setUserError] = useState(false)
-  const [emailError, setEmailError] = useState(false)
-  const [passwordError, setPasswordError] = useState(false)
+  const [userError, setUserError] = useState<boolean>(false)
+  const [emailError, setEmailError] = useState<boolean>(false)
+  const [passwordError, setPasswordError] = useState<boolean>(false)
   const [userErrorMsg, setUserErrorMsg] = useState('')
   const [emailErrorMsg, setEmailErrorMsg] = useState('')
   const [passErrorMsg, setPassErrorMsg] = useState('')
@@ -49,7 +50,7 @@ export default function SignUpForm() {
   }
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setShowSnackBar(false)
     // set all inputs false so red outline goes away
@@ -59,9 +60,9 @@ export default function SignUpForm() {
     setUserErrorMsg('')
     setEmailErrorMsg('')
 
-    let isValidUser = true
-    let isValidEmail = true
-    let isValidPassword = true
+    let isValidUser: boolean = true
+    let isValidEmail: boolean = true
+    let isValidPassword: boolean = true
 
 
     if (user === "") {
@@ -210,7 +211,7 @@ export default function SignUpForm() {
           </h3>
         </form>
 
-        {showSnackBar && <BasicSnackBar severity={severity} message='Registration Complete!' duration={3000} />}
+        {showSnackBar && <BasicSnackBar severity={severity} message='Registration Complete!' duration={3000} trigger={undefined} />}
         {showSnackBar && <BasicBackdrop timer={3000} />}
 
       </Paper>

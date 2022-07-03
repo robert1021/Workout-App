@@ -1,10 +1,17 @@
 import Button from '@mui/material/Button';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import Stack from '@mui/material/Stack';
+import React from 'react';
 
-export default function DeleteButton({ variant, size, width, func }) {
 
+interface Props {
+    variant?: "text" | "outlined" | "contained" | undefined,
+    size?: "small" | "medium" | "large" | undefined,
+    width?: string,
+    func: () => void
+}
 
+export const DeleteButton: React.FC<Props> = ({ variant, size, width, func }) => {
 
     return (
         <Stack direction="row" spacing={2}>

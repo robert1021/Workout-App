@@ -1,10 +1,18 @@
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import React from 'react';
 import { useState, useEffect } from 'react'
 
-export default function ExerciseTotalVolume( { title, allExerciseSetData } ) {
 
-    const [volume, setVolume] = useState('')
+interface Props {
+    title: string,
+    allExerciseSetData: any
+}
+
+
+export const ExerciseTotalVolume: React.FC<Props> = ({ title, allExerciseSetData }) => {
+
+    const [volume, setVolume] = useState<number>()
 
     const setTotalVolume = () => {
         let vol = 0

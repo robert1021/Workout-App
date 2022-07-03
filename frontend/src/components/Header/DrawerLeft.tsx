@@ -9,6 +9,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export default function DrawerLeft() {
   const iconStyle = {
@@ -20,7 +21,7 @@ export default function DrawerLeft() {
     width: "40%"
   }
 
-  const [openDrawerLeft, setOpenDrawerLeft] = useState(false);
+  const [openDrawerLeft, setOpenDrawerLeft] = useState<boolean>(false);
 
   return (
     <>

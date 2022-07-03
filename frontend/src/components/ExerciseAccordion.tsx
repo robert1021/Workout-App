@@ -1,30 +1,39 @@
+// @ts-nocheck
+
 import { useState } from "react";
 import { Typography, Accordion, AccordionDetails, AccordionSummary, Divider, Grid } from "@mui/material"
-import ExerciseTextFieldsGrid from "./ExerciseTextfieldsGrid"
-import ExerciseTotalVolume from "./ExerciseTotalVolume";
+import { ExerciseTextfieldsGrid } from "./ExerciseTextfieldsGrid"
+import { ExerciseTotalVolume } from "./ExerciseTotalVolume";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import DeleteButton from "./Buttons/DeleteButton"
-import EditButton from "./Buttons/EditButton";
+import { DeleteButton } from "./Buttons/DeleteButton"
+import { EditButton } from "./Buttons/EditButton";
+import React from "react";
 
 
+interface Props {
+    title: string,
+    allExerciseSetData: any,
+    setAllExerciseSetData: any
+}
 
-export default function ExerciseAccordion({ title, allExerciseSetData, setAllExerciseSetData }) {
+
+export const ExerciseAccordion: React.FC<Props> = ({ title, allExerciseSetData, setAllExerciseSetData }) => {
 
     // handle the state of all TextFields - enabled or disabled
-    const [inputDisabled, setInputDisabled] = useState(true)
+    const [inputDisabled, setInputDisabled] = useState<boolean>(true)
 
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
-    const handleChange = (panel) => (event, isExpanded) => {
+    const handleChange = (panel: string | boolean | ((prevState: boolean) => boolean)) => (event: any, isExpanded: any) => {
         setExpanded(isExpanded ? panel : false);
     };
 
 
-    const handleEditButtonClick = (e) => {
+    const handleEditButtonClick = () => {
         setInputDisabled(!inputDisabled)
     }
 
-    const handleDeleteButtonClick = (e, data, key, exercise, set) => {
+    const handleDeleteButtonClick = (key: number, exercise: any) => {
 
         // make a copy
         let allExerciseSetDataCopy = [...allExerciseSetData]
@@ -35,7 +44,7 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
             return item.exercise === exercise
         })
 
-        const newSetNumbers = []
+        const newSetNumbers: [] = []
         for (let i = 1; i < filterdArray.length; i++) {
             newSetNumbers.push(i)
         }
@@ -77,7 +86,7 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
 
                     </Grid>
 
-                    {allExerciseSetData.map((data, key) => {
+                    {allExerciseSetData.map((data: { exercise: string; id: React.Key | null | undefined; set: any; }, key: any) => {
 
                         if (data.exercise !== title) return null
 
@@ -91,14 +100,13 @@ export default function ExerciseAccordion({ title, allExerciseSetData, setAllExe
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <DeleteButton func={(e) => handleDeleteButtonClick(e, data, key, data.exercise, data.set)} />
+                                        <DeleteButton func={() => handleDeleteButtonClick(key, data.exercise)} />
                                     </Grid>
                                 </Grid>
 
                                 <Divider />
-                                <ExerciseTextFieldsGrid
+                                <ExerciseTextfieldsGrid
                                     dataset={data}
-                                    func={() => console.log(data)}
                                     isDisabled={inputDisabled}
                                     allExerciseSetData={allExerciseSetData}
                                     setAllExerciseSetData={setAllExerciseSetData}

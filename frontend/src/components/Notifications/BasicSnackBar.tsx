@@ -1,19 +1,33 @@
+// @ts-nocheck
+
 import { useState, forwardRef, useEffect } from "react";
 import Stack from '@mui/material/Stack';
-
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import React from "react";
 
-const Alert = forwardRef(function Alert(props, ref) {
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+  ) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-export default function BasicSnackBar({ severity, message, duration, trigger }) {
-    const [open, setOpen] = useState(true);
+  });
 
 
+interface Props {
+    severity: string | undefined,
+    message: string,
+    duration: number,
+    trigger?: any
+}
 
-    const handleClose = (event, reason) => {
+
+export const BasicSnackBar: React.FC<Props> = ({severity, message, duration, trigger }) => {
+    const [open, setOpen] = useState<boolean>(true);
+
+
+
+    const handleClose = (event: any, reason: string) => {
         if (reason === 'clickaway') {
             return;
         }

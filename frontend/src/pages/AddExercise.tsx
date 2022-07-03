@@ -1,31 +1,42 @@
 import { Container, Grid, Paper, Box, Stack, Typography, Button, TextField, Divider } from "@mui/material"
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import CircleCheckButton from "../components/Buttons/CircleCheckButton";
-import CircleExitButton from "../components/Buttons/CircleExitButton";
-import AddButton from "../components/Buttons/AddButton";
-import BasicSearchBar from "../components/BasicSearchBar";
-import BasicSnackBar from "../components/Notifications/BasicSnackBar";
-import ExerciseAccordion from "../components/ExerciseAccordion";
+import { CircleCheckButton } from "../components/Buttons/CircleCheckButton";
+import { CircleExitButton } from "../components/Buttons/CircleExitButton";
+import { AddButton } from "../components/Buttons/AddButton";
+import { BasicSearchBar } from "../components/BasicSearchBar";
+import { BasicSnackBar } from "../components/Notifications/BasicSnackBar";
+import { ExerciseAccordion } from "../components/ExerciseAccordion";
 import axios from "axios";
+import React from "react";
 
 const time = new Date().toLocaleString().split(', ');
 const date = time[0]
 const currlocal = time[1]
 
 
-export default function AddExercise() {
+interface AllSetData {
+    id: number,
+    exercise: string,
+    set: number,
+    weight: string,
+    reps: string,
+    rpe: string
+}
 
-    const [id, setId] = useState(1)
-    const [showSnackBar, setShowSnackBar] = useState(false)
-    const [exercises, setExercises] = useState([])
+
+export const AddExercise: React.FC = () => {
+
+    const [id, setId] = useState<number>(1)
+    const [showSnackBar, setShowSnackBar] = useState<boolean>(false)
+    const [exercises, setExercises] = useState<[]>([])
     const [searchBarValue, setSearchBarValue] = useState('')
     const [weightValue, setWeightValue] = useState('')
     const [repsValue, setRepsValue] = useState('')
     const [rpeValue, setRpeValue] = useState('')
 
     // array of objects that holds set data
-    const [allSetData, setAllSetData] = useState([])
+    const [allSetData, setAllSetData] = useState<AllSetData[]>([])
 
     useEffect(() => {
         getExercises()
@@ -33,8 +44,8 @@ export default function AddExercise() {
 
     const getSetData = () => {
 
-        
-        let count = 1
+
+        let count: number = 1
 
         for (let set of allSetData) {
             // id ++
@@ -43,7 +54,7 @@ export default function AddExercise() {
             }
         }
 
-        const data = {
+        const data: AllSetData = {
             id: id,
             exercise: searchBarValue,
             set: count,
@@ -52,18 +63,18 @@ export default function AddExercise() {
             rpe: rpeValue
         }
 
-        const newId = id + 1
+        const newId: number = id + 1
         setId(newId)
         setShowSnackBar(true)
 
         return data
     }
 
-    const getExercises = async() => {
+    const getExercises = async () => {
         try {
             const res = await axios.get("http://localhost:4000/workout/getNames")
             setExercises(res.data.exercises)
-            
+
         }
         catch {
             console.log("Error getting exercises")
@@ -97,7 +108,7 @@ export default function AddExercise() {
         navigateToExercise()
     }
 
-    const onClickAddSetHandler = (e) => {
+    const onClickAddSetHandler = () => {
         setAllSetData([...allSetData, getSetData()])
 
     }
