@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 
-const register = async (req, res) => {
+const register = async (req: any, res: any) => {
     const email = req.body.email
     const username = req.body.user
     const password = req.body.password
@@ -31,7 +31,7 @@ const register = async (req, res) => {
         .then(() => {
             res.status(200).send("Registration Complete!")
         })
-        .catch((e) => {
+        .catch(() => {
             res.status(400).send("Error with saving")
         })
     } 
@@ -40,7 +40,7 @@ const register = async (req, res) => {
     }
 }
 
-const login = async (req, res) => {
+const login = async (req: any, res: any) => {
     const emailOrUser = req.body.emailOrUser
     const password = req.body.password
 

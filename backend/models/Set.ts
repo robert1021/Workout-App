@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import * as mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const setSchema = new Schema({
@@ -21,8 +21,8 @@ const setSchema = new Schema({
         type: Number
     }
 
-}, {timestamsps: true})
+})
 
 const Set = mongoose.model('Set', setSchema)
 
-module.exports = Set
+export default Set

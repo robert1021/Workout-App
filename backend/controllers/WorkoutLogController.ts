@@ -1,14 +1,30 @@
-const Exercise = require('../models/Exercise')
+import Exercise from '../models/Exercise'
+import Set from '../models/Set'
+import Workout from '../models/Workout'
 const axios = require('axios')
-const Set = require('../models/Set')
-const Workout = require('../models/Workout')
 
+interface SetObj {
+    exercise: string,
+    set: number,
+    weight: number,
+    reps: number,
+    rpe: number
+}
+interface ExerciseObj {
+    id: string, 
+    name: string, 
+    bodyPart: string, 
+    target: string, 
+    equipment: string, 
+    gifUrl: string 
+        
+}
 
-const logWorkout = async (req, res) => {
-    const log = req.body.log
+const logWorkout = async (req: any, res: any) => {
+    const log: SetObj[]= req.body.log
     try {
-        log.forEach(set => {
-            let doc= new Set({
+        log.forEach((set: SetObj) => {
+            let doc = new Set({
                 // workoutId: 1,
                  exercise: set.exercise,
                  setNum: set.set,
@@ -28,11 +44,11 @@ const logWorkout = async (req, res) => {
 }   
 
 
-const getExerciseNames = async(req, res) => {
+const getExerciseNames = async(req: any, res: any) => {
     try {
         const exercises = await Exercise.find({}, {name:1})
         if(exercises) {
-            res.status(200).json({
+            return res.status(200).json({
                 exercises: exercises
             })
         }
@@ -44,7 +60,7 @@ const getExerciseNames = async(req, res) => {
 }
 
 
-const addToDatabase = (req, res) => {
+const addToDatabase = (req: any, res: any) => {
     const options = {
         method: 'GET',
         url: 'https://exercisedb.p.rapidapi.com/exercises',
@@ -53,8 +69,8 @@ const addToDatabase = (req, res) => {
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         }
       };
-      axios.request(options).then(function (res) {
-        const arr = getUniqueListBy(res.data, 'name')
+      axios.request(options).then(function (res: any) {
+        const arr: ExerciseObj[]= getUniqueListBy(res.data, 'name')
         arr.forEach(res => {
             let exercise = new Exercise({
                 id: res.id,
@@ -67,14 +83,14 @@ const addToDatabase = (req, res) => {
             exercise.save()
           })
           
-    }).catch(function (error) {
+    }).catch(function (error: Error) {
           console.error(error);
     });
 
     res.send("okay")
 }
 
-const getUniqueListBy = (arr, key) => {
+const getUniqueListBy = (arr: Array<any>, key: string): any => {
     return [...new Map(arr.map(item => [item[key], item])).values()]
 }
 

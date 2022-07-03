@@ -8,4 +8,4 @@ router.get('/etl', WorkoutLogController.addToDatabase)
 
 router.get('/getNames', WorkoutLogController.getExerciseNames)
 
-module.exports = router
+export default router
