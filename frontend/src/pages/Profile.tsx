@@ -25,7 +25,7 @@ export const Profile: React.FC = () => {
         }
         catch(error) {
             console.log(error.response.data)
-            if(error.response.data == 'Authorization Failed!') {
+            if(error.response.data === 'Authorization Failed!') {
                 nav('/Login')
             }
             

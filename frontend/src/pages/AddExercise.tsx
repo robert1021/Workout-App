@@ -7,6 +7,7 @@ import { AddButton } from "../components/Buttons/AddButton";
 import { BasicSearchBar } from "../components/BasicSearchBar";
 import { BasicSnackBar } from "../components/Notifications/BasicSnackBar";
 import { ExerciseAccordion } from "../components/ExerciseAccordion";
+import { BasicDatePicker } from "../components/BasicDatePicker";
 import axios from "axios";
 import React from "react";
 
@@ -142,18 +143,35 @@ export const AddExercise: React.FC = () => {
 
                     <Grid item xs={12}>
 
-                        <Stack
-                            direction="row"
-                            justifyContent="space-evenly"
-                            alignItems="baseline"
-                            spacing={1}
-                        >
-                            <h3>{date}</h3>
-                            <h3>{currlocal}</h3>
-                            <Button variant="outlined">History</Button>
+                        <Grid container>
 
-                        </Stack>
+                            <Grid item xs={4}>
 
+
+                                <BasicDatePicker size={"small"} label={"Date"} />
+
+
+                            </Grid>
+
+                            <Grid item xs={4} alignContent={'center'}>
+
+
+                                <h5>{currlocal}</h5>
+
+
+                            </Grid>
+
+                            <Grid item xs={4}>
+
+                                <Box display="flex" justifyContent="flex-end">
+                                    <Button variant="outlined">History</Button>
+                                </Box>
+
+                            </Grid>
+
+
+
+                        </Grid>
 
                     </Grid>
 
