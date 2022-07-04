@@ -4,7 +4,8 @@ import React from 'react'
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { TextField } from '@mui/material'
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import { TextField, InputAdornment } from '@mui/material'
 
 
 interface Props {
@@ -28,7 +29,12 @@ export const BasicDatePicker: React.FC<Props> = ({ size, label }) => {
                     size={size}
                     label={label}
                     InputProps={{
-                        autoComplete: "off"
+                        autoComplete: "off",
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <CalendarMonthOutlinedIcon />
+                            </InputAdornment>
+                        ),
                     }}
                 />
             }
