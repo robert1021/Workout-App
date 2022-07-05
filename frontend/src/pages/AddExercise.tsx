@@ -12,7 +12,6 @@ import axios from "axios";
 import React from "react";
 
 const time = new Date().toLocaleString().split(', ');
-const date = time[0]
 const currlocal = time[1]
 
 
@@ -25,17 +24,24 @@ interface AllSetData {
     rpe: string
 }
 
+interface WorkoutData {
+    date: string,
+    log: AllSetData[]
+}
+
 
 export const AddExercise: React.FC = () => {
 
     const [id, setId] = useState<number>(1)
     const [showSnackBar, setShowSnackBar] = useState<boolean>(false)
     const [exercises, setExercises] = useState<[]>([])
-    const [searchBarValue, setSearchBarValue] = useState('')
-    const [weightValue, setWeightValue] = useState('')
-    const [repsValue, setRepsValue] = useState('')
-    const [rpeValue, setRpeValue] = useState('')
+    const [searchBarValue, setSearchBarValue] = useState<string>('')
+    const [weightValue, setWeightValue] = useState<string>('')
+    const [repsValue, setRepsValue] = useState<string>('')
+    const [rpeValue, setRpeValue] = useState<string>('')
 
+    // holds the date set in the date picker
+    const [date, setDate] = useState<string>('')
     // array of objects that holds set data
     const [allSetData, setAllSetData] = useState<AllSetData[]>([])
 
@@ -97,9 +103,19 @@ export const AddExercise: React.FC = () => {
 
     // run this function to send all set data to database 
     const doneAddingSetData = async () => {
-        console.log(allSetData)
+
+        // create final object holding data
+        // date needs to be formatted ?
+        // exercise id needs to be added?
+        const workoutData: WorkoutData = {
+            date: date,
+            log: allSetData
+        }
+
+        console.log(workoutData)
+        
         try {
-            await axios.post("http://localhost:4000/workout/log", { log: allSetData })
+            await axios.post("http://localhost:4000/workout/log", workoutData)
             console.log("Workout posted")
         }
         catch {
@@ -148,7 +164,7 @@ export const AddExercise: React.FC = () => {
                             <Grid item xs={4}>
 
 
-                                <BasicDatePicker size={"small"} label={"Date"} />
+                                <BasicDatePicker size={"small"} label={"Date"} setDate={setDate}/>
 
 
                             </Grid>

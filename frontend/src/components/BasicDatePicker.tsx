@@ -10,19 +10,24 @@ import { TextField, InputAdornment } from '@mui/material'
 
 interface Props {
     size: "small" | "normal" | undefined
-    label: string | undefined
+    label: string | undefined,
+    setDate: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const BasicDatePicker: React.FC<Props> = ({ size, label }) => {
+export const BasicDatePicker: React.FC<Props> = ({ size, label, setDate }) => {
 
-    const [selectedDate, setSelectedDate] = useState(null)
+    const [selectedDate, setSelectedDate] = useState<null | string>(null)
 
+    const handleDateSelected = (date) => {
+        setSelectedDate(date)
+        setDate(date)
+    }
 
     return (
 
         <DatePicker
             selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            onChange={(date) => handleDateSelected(date)}
             customInput={
                 <TextField
                     name="noAutoFill"
