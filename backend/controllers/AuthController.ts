@@ -60,7 +60,8 @@
 //             return res.status(500).send("Wrong combination of username and password")
 //         }
 
-//     } catch {
+//     } catch { 
+
 //         return res.status(500).send()
 //     }
 // }
