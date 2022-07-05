@@ -141,7 +141,7 @@ export const AddExercise: React.FC = () => {
                         <Divider />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sx={{marginTop: '10px'}}>
 
                         <Grid container>
 
@@ -175,14 +175,14 @@ export const AddExercise: React.FC = () => {
 
                     </Grid>
 
-                    <Grid item xs={12} sx={{ marginTop: '10px' }}>
+                    <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
 
 
-                        <Grid container>
-
-                            <Grid item xs={6}>
-                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
-                                    <Typography variant="h4">Weight</Typography>
+                        <Grid container justifyContent="center" alignItems="center" spacing={0}>
+                            
+                            <Grid item xs={4}>
+                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
+                                    <Typography variant="h4" sx={{marginTop: '5px'}}>Weight</Typography>
                                 </Box>
 
                             </Grid>
@@ -196,13 +196,13 @@ export const AddExercise: React.FC = () => {
 
                     </Grid>
 
-                    <Grid item xs={12} sx={{ marginTop: '10px' }}>
+                    <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
 
-                        <Grid container>
-
-                            <Grid item xs={6}>
-                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
-                                    <Typography variant="h4">Reps</Typography>
+                        <Grid container justifyContent="center" alignItems="center" spacing={0}>
+                        
+                            <Grid item xs={4}>
+                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
+                                    <Typography variant="h4" sx={{marginTop: '5px'}}>Reps</Typography>
                                 </Box>
 
                             </Grid>
@@ -216,14 +216,14 @@ export const AddExercise: React.FC = () => {
 
                     </Grid>
 
-                    <Grid item xs={12} sx={{ marginTop: '10px' }}>
+                    <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
 
 
-                        <Grid container>
+                        <Grid container justifyContent="center" alignItems="center" spacing={0}>
 
-                            <Grid item xs={6}>
-                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
-                                    <Typography variant="h4">RPE</Typography>
+                            <Grid item xs={4}>
+                                <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
+                                    <Typography variant="h4" sx={{marginTop: '5px'}}>RPE</Typography>
                                 </Box>
                             </Grid>
 

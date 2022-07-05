@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.0.1",
     "@types/react-dom": "^18.0.5",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
