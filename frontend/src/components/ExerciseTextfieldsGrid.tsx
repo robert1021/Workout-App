@@ -42,13 +42,13 @@ export const ExerciseTextfieldsGrid: React.FC<Props> = ({dataset, isDisabled, al
 
     return (
 
-        <Grid container>
+        <Grid container sx={{paddingTop: '25px', paddingBottom: '25px'}}>
 
-            <Grid item xs={12} sx={{ marginTop: '10px' }}>
-                <Grid container>
+            <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
+                <Grid container justifyContent="center" alignItems="center" spacing={0}>
 
-                    <Grid item xs={6}>
-                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
+                    <Grid item xs={4}>
+                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
                             <Typography variant="h4">Weight</Typography>
                         </Box>
                     </Grid>
@@ -62,10 +62,10 @@ export const ExerciseTextfieldsGrid: React.FC<Props> = ({dataset, isDisabled, al
 
             </Grid>
 
-            <Grid item xs={12} sx={{ marginTop: '10px' }}>
-                <Grid container>
-                    <Grid item xs={6}>
-                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
+            <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
+                <Grid container justifyContent="center" alignItems="center" spacing={0}>
+                    <Grid item xs={4}>
+                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
                             <Typography variant="h4">Reps</Typography>
                         </Box>
                     </Grid>
@@ -78,10 +78,10 @@ export const ExerciseTextfieldsGrid: React.FC<Props> = ({dataset, isDisabled, al
 
             </Grid>
 
-            <Grid item xs={12} sx={{ marginTop: '10px' }}>
-                <Grid container>
-                    <Grid item xs={6}>
-                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '25%' }}>
+            <Grid item xs={12} md={4} sx={{ marginTop: '10px' }}>
+                <Grid container justifyContent="center" alignItems="center" spacing={0}>
+                    <Grid item xs={4}>
+                        <Box display="flex" justifyContent="flex-end" sx={{ paddingRight: '15px' }}>
                             <Typography variant="h4">RPE</Typography>
                         </Box>
                     </Grid>
