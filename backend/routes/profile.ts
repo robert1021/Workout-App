@@ -1,8 +1,8 @@
-import express from 'express'
-const router = express.Router()
-const ProfileController = require('../controllers/ProfileController')
-const authorization = require('../middleware/authorization')
+// import express from 'express'
+// const router = express.Router()
+// const ProfileController = require('../controllers/ProfileController')
+// const authorization = require('../middleware/authorization')
 
-router.get('/', authorization.authorization, ProfileController.getData)
+// // router.get('/', authorization.authorization, ProfileController.getData)
 
-export default router
+// export default router

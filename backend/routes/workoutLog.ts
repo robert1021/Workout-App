@@ -1,4 +1,4 @@
-const express = require('express')
+import * as express from 'express'
 const router = express.Router()
 const WorkoutLogController = require('../controllers/WorkoutLogController')
 
@@ -8,4 +8,4 @@ router.get('/etl', WorkoutLogController.addToDatabase)
 
 router.get('/getNames', WorkoutLogController.getExerciseNames)
 
-export default router
+module.exports = router
