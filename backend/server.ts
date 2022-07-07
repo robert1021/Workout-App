@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 // const profileRoute = require('./routes/profile')
 const workoutRoute = require('./routes/workoutLog')
+const MongoStore = require('connect-mongo')
 const cors = require('cors')
 
 require('./passport')
@@ -15,7 +16,10 @@ app.use(cors())
 app.use(session({
     secret: "cats", // TODO env variable
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.DATABASE_URL
+    })
 }))
 
 app.use(passport.initialize())

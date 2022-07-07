@@ -1,13 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
-// const AuthController = require('../controllers/AuthController')
-// const authorization = require('../middleware/authorization')
-
-// router.post('/register', AuthController.register)
-
-// router.post('/login', AuthController.login)
-
 
 router.get('/', (req, res) => {
     res.send('<a href="/auth/google"> Authenticate with Google</a>')
@@ -34,6 +27,7 @@ router.get('/logout', (req, res) => {
         if(err) {
             console.log(err)
         }
+        req.session.destroy()
         res.send("Goodbye!")
     })
     
