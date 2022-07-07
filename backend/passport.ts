@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
                     image: profile.photos[0].value
                 })
                 await newUser.save()
-                done(null, user)
+                done(null, newUser)
             }
         }
         catch(err) {
