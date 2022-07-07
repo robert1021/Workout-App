@@ -6,13 +6,13 @@ import { WorkoutAccordion } from '../components/WorkoutAccordion';
 import { BasicSearchBar } from '../components/BasicSearchBar';
 import React from 'react';
 
-export const Excerise: React.FC = () => {
+export const Workouts: React.FC = () => {
 
     const navigate = useNavigate();
 
     const navigateToAddExercise = () => {
         
-        navigate('/add-exercise');
+        navigate('/add-workout');
       };
 
     const [searchBarValue, setSearchBarValue] = useState('')
@@ -40,7 +40,7 @@ export const Excerise: React.FC = () => {
 
                 <Grid item xs={12} style={{ textAlign: "center", marginBottom: '1vh' }}>
                     <Paper sx={{ backgroundColor: 'whitesmoke' }} elevation={3}>
-                        <Typography variant="h4">Exercise</Typography>
+                        <Typography variant="h4">All Workouts</Typography>
                     </Paper>
                 </Grid>
 

@@ -26,7 +26,7 @@ export const BasicSearchBar: React.FC<Props> = ({ dataset, datasetSearchKey, siz
     }
 
     return (
-        <Stack spacing={2} sx={{ width: 300 }}>
+        <Stack spacing={2} sx={{ maxWidth: 350 }}>
 
             <Autocomplete
                 onChange={handleAutocompleteOnChange}

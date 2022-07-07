@@ -36,7 +36,7 @@ interface WorkoutData {
 // ]
 
 
-export const AddExercise: React.FC = () => {
+export const AddWorkout: React.FC = () => {
 
     const [id, setId] = useState<number>(1)
     const [showSnackBar, setShowSnackBar] = useState<boolean>(false)
@@ -110,7 +110,7 @@ export const AddExercise: React.FC = () => {
 
     const navigateToExercise = () => {
 
-        navigate('/exercise');
+        navigate('/workouts');
     };
 
     // run this function to send all set data to database 
@@ -146,23 +146,41 @@ export const AddExercise: React.FC = () => {
     return (
         <>
             <Container sx={{ marginTop: '15vh' }}>
+
+                <Grid container>
+                    <Grid item xs={12} style={{ textAlign: "center", marginBottom: '1vh' }}>
+                        <Paper elevation={3}>
+                            <Typography variant="h4">Add Workout</Typography>
+                        </Paper>
+                    </Grid>
+                </Grid>
+
                 <Paper elevation={3} >
 
                     {/* add exercise view tab */}
                     <div style={{ display: tabValue === 0 ? 'block' : 'none' }}>
                         <Grid container sx={{ paddingLeft: '10px', paddingRight: '10px' }}>
 
-                            <Grid item xs={12} sx={{ marginTop: '10px', marginBottom: '5px' }}>
+
+                            <Grid item xs={12}>
+                                <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '5px' }}>
+                                    <CircleExitButton size={'small'} func={navigateToExercise} />
+                                </Box>
+                            </Grid>
+
+                            <Grid item xs={12} sx={{ marginTop: '5px', marginBottom: '10px' }}>
 
                                 <Grid container>
-                                    <Grid item xs={8}>
+                                    <Grid item xs={6}>
                                         <BasicSearchBar dataset={exercises} datasetSearchKey={'name'} size={"normal"} label={'Search exercise'} setValue={setSearchBarValue} />
                                     </Grid>
 
-                                    <Grid item xs={4}>
-                                        <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '5px' }}>
-                                            <CircleExitButton size={'small'} func={navigateToExercise} />
+                                    <Grid item xs={6}>
+
+                                        <Box display="flex" justifyContent="flex-end" sx={{marginTop: '10px'}}>
+                                            <Button  size="large" variant="outlined" onClick={() => handleTabChange(1)}>History</Button>
                                         </Box>
+
                                     </Grid>
 
                                 </Grid>
@@ -192,13 +210,13 @@ export const AddExercise: React.FC = () => {
 
                                     </Grid>
 
-                                    <Grid item xs={4}>
+                                    {/* <Grid item xs={4}>
 
                                         <Box display="flex" justifyContent="flex-end">
                                             <Button variant="outlined" onClick={() => handleTabChange(1)}>History</Button>
                                         </Box>
 
-                                    </Grid>
+                                    </Grid> */}
 
                                 </Grid>
 

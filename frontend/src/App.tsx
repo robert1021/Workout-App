@@ -9,8 +9,8 @@ import { Profile } from "./pages/Profile";
 import Tools from "./pages/Tools";
 import PasswordReset from "./pages/PasswordReset";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Excerise } from "./pages/Exercise";
-import  { AddExercise } from "./pages/AddExercise";
+import { Workouts } from "./pages/Workouts";
+import  { AddWorkout } from "./pages/AddWorkout";
 import React from "react";
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tools" element={<Tools />} />
-        <Route path="/exercise" element={<Excerise />} />
-        <Route path="/add-exercise" element={<AddExercise />} />
+        <Route path="/workouts" element={<Workouts />} />
+        <Route path="/add-workout" element={<AddWorkout />} />
       </Routes>
     </div>
   );
