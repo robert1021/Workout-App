@@ -30,9 +30,13 @@ router.get('/failure', (req, res) => [
 ])
 
 router.get('/logout', (req, res) => {
-    req.logout()
-    req.session.destroy()
-    res.send('Goodbye!')
+    req.logout((err) => {
+        if(err) {
+            console.log(err)
+        }
+        res.send("Goodbye!")
+    })
+    
 })
 
 function isLoggedIn(req, res, next) {
