@@ -86,12 +86,12 @@ export const ExerciseAccordion: React.FC<Props> = ({ title, allExerciseSetData, 
 
                     </Grid>
 
-                    {allExerciseSetData.map((data: { exercise: string; id: React.Key | null | undefined; set: any; }, key: any) => {
+                    {allExerciseSetData.map((data: { exercise: string; throwAwayId: React.Key | null | undefined; set: any; }, key: any) => {
 
                         if (data.exercise !== title) return null
 
                         return (
-                            <div key={data.id}>
+                            <div key={data.throwAwayId}>
                                 <Grid container>
 
                                     <Grid item xs={6}>

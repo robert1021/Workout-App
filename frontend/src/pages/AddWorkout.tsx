@@ -8,15 +8,28 @@ import { BasicSearchBar } from "../components/BasicSearchBar";
 import { BasicSnackBar } from "../components/Notifications/BasicSnackBar";
 import { ExerciseAccordion } from "../components/ExerciseAccordion";
 import { BasicDatePicker } from "../components/BasicDatePicker";
+import { ExerciseHistory } from '../components/ExerciseHistory'
 import axios from "axios";
 import React from "react";
 
 const time = new Date().toLocaleString().split(', ');
 const currlocal = time[1]
 
+interface ExerciseData {
+    id: string,
+    name: string,
+    bodyPart: string,
+    target: string,
+    equipment: string,
+    gifUrl: string,
+    createdAt: Date,
+    updatedAt: Date
+
+}
 
 interface AllSetData {
-    id: number,
+    throwAwayId: number,
+    id: string | null,
     exercise: string,
     set: number,
     weight: string,
@@ -30,17 +43,25 @@ interface WorkoutData {
 }
 
 // const exercises = [
-//     { name: 'squat' },
-//     { name: 'deadlift' }
+//     { name: 'squat', id: '12' },
+//     { name: 'deadlift', id: '55' }
 
 // ]
 
+// for testing purposes - data structure to be determined
+const history = [
+    { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+    { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+    { date: '07/11/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+    { date: '07/10/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+    { date: '07/09/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+]
 
 export const AddWorkout: React.FC = () => {
 
-    const [id, setId] = useState<number>(1)
+    const [throwAwayId, setThrowAwayId] = useState<number>(1)
     const [showSnackBar, setShowSnackBar] = useState<boolean>(false)
-    const [exercises, setExercises] = useState<[]>([])
+    const [exercises, setExercises] = useState<ExerciseData[]>([])
     const [searchBarValue, setSearchBarValue] = useState<string>('')
     const [weightValue, setWeightValue] = useState<string>('')
     const [repsValue, setRepsValue] = useState<string>('')
@@ -50,7 +71,6 @@ export const AddWorkout: React.FC = () => {
     const [date, setDate] = useState<string>('')
     // array of objects that holds set data
     const [allSetData, setAllSetData] = useState<AllSetData[]>([])
-
 
     const [tabValue, setTabValue] = useState<number>(0);
 
@@ -70,10 +90,23 @@ export const AddWorkout: React.FC = () => {
         for (let set of allSetData) {
             if (set.exercise === searchBarValue) {
                 count++
+
+            }
+        }
+
+        // get id of exercise
+        let id: null | string = null
+        if (exercises.length > 0) {
+
+            for (let item of exercises) {
+                if (searchBarValue === item.name) {
+                    id = item.id
+                }
             }
         }
 
         const data: AllSetData = {
+            throwAwayId: throwAwayId,
             id: id,
             exercise: searchBarValue,
             set: count,
@@ -82,8 +115,8 @@ export const AddWorkout: React.FC = () => {
             rpe: rpeValue
         }
 
-        const newId: number = id + 1
-        setId(newId)
+        const newId: number = throwAwayId + 1
+        setThrowAwayId(newId)
         setShowSnackBar(true)
 
         return data
@@ -142,7 +175,6 @@ export const AddWorkout: React.FC = () => {
 
     }
 
-
     return (
         <>
             <Container sx={{ marginTop: '15vh' }}>
@@ -177,8 +209,8 @@ export const AddWorkout: React.FC = () => {
 
                                     <Grid item xs={6}>
 
-                                        <Box display="flex" justifyContent="flex-end" sx={{marginTop: '10px'}}>
-                                            <Button  size="large" variant="outlined" onClick={() => handleTabChange(1)}>History</Button>
+                                        <Box display="flex" justifyContent="flex-end" sx={{ marginTop: '10px' }}>
+                                            <Button size="large" variant="outlined" onClick={() => handleTabChange(1)}>History</Button>
                                         </Box>
 
                                     </Grid>
@@ -209,14 +241,6 @@ export const AddWorkout: React.FC = () => {
 
 
                                     </Grid>
-
-                                    {/* <Grid item xs={4}>
-
-                                        <Box display="flex" justifyContent="flex-end">
-                                            <Button variant="outlined" onClick={() => handleTabChange(1)}>History</Button>
-                                        </Box>
-
-                                    </Grid> */}
 
                                 </Grid>
 
@@ -347,6 +371,20 @@ export const AddWorkout: React.FC = () => {
                         </Box>
 
                         <h1>{searchBarValue}</h1>
+
+                        {/* data structure to be determined - testing only */}
+                        {history.map((data, key) => {
+
+                            return (
+                                <div key={key}>
+                                    <ExerciseHistory setHistory={data} />
+                                </div>
+                            )
+
+                        })}
+
+
+
 
                     </div>
 

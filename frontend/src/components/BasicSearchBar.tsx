@@ -10,7 +10,8 @@ interface Props {
     datasetSearchKey: string,
     size?: 'small' | 'normal' | undefined,
     label: string,
-    setValue: any
+    setValue: React.Dispatch<React.SetStateAction<string>>,
+
 }
 
 
@@ -19,11 +20,13 @@ export const BasicSearchBar: React.FC<Props> = ({ dataset, datasetSearchKey, siz
 
     const handleTextFieldOnChange = (e: { target: { value: any; }; }) => {
         setValue(e.target.value)
+        
     }
 
     const handleAutocompleteOnChange = (e: { target: { innerText: any; }; }) => {
         setValue(e.target.innerText)
     }
+
 
     return (
         <Stack spacing={2} sx={{ maxWidth: 350 }}>
