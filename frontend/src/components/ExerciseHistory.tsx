@@ -3,18 +3,7 @@ import { Container, Grid, Paper, Box, Stack, Typography, Button, TextField, Divi
 
 
 interface Props {
-    setHistory: {
-        date: string,
-        time: string,
-        exercise: string,
-        set: string,
-        weight: string,
-        reps: string,
-        rpe: string,
-
-    },
-
-
+    setHistory: { date: string, time: string, exercise: string, set: string, weight: string, reps: string, rpe: string }[]
 }
 
 
@@ -24,45 +13,51 @@ export const ExerciseHistory: React.FC<Props> = ({ setHistory }) => {
     return (
 
         <>
-            <Container>
+            <Container sx={{ marginTop: '10px' }}>
                 <Grid container>
-
 
                     <Grid item xs={12}>
 
                         <Grid container>
 
-
                             <Grid item xs={6}>
 
-                                <Typography>{setHistory.exercise}</Typography>
+                                <Typography variant='h5'>Date</Typography>
 
                             </Grid>
-
-                            <Grid item xs={6}>
-
-                                <Typography>{setHistory.date}</Typography>
-
-
-                            </Grid>
-
-
 
                         </Grid>
-
 
                         <Divider />
 
                     </Grid>
 
+                    <Grid item xs={12}>
+                        {/* need to use map to dynamically add sets in  */}
+                        {setHistory.map((data, key) => {
+                            return (
 
-                    {/* need to use map to dynamically add sets in  */}
+                                <div key={key}>
 
+                                    <Grid container>
 
+                                        <Grid item xs={4} md={6}>
+                                            <Typography variant='h6'>{`Set ${data.set}`}</Typography>
+                                        </Grid>
+
+                                        <Grid item xs={8} md={6}>
+                                            <Typography variant='h6'>{`${data.weight}LB x ${data.reps} Reps @ Rpe ${data.rpe}`}</Typography>
+                                        </Grid>
+
+                                    </Grid>
+
+                                </div>
+                            )
+                        })}
+
+                    </Grid>
                 </Grid>
             </Container>
-
-
 
         </>
 

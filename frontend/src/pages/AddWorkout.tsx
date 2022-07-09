@@ -50,11 +50,22 @@ interface WorkoutData {
 
 // for testing purposes - data structure to be determined
 const history = [
-    { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
-    { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
-    { date: '07/11/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
-    { date: '07/10/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
-    { date: '07/09/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+    [
+        { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '2', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '3', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '4', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/13/2022', time: '8:30pm', exercise: 'squat', set: '5', weight: '225', reps: '10', rpe: '5' }
+    ],
+    [
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '1', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '2', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '3', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '4', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '5', weight: '225', reps: '10', rpe: '5' },
+        { date: '07/12/2022', time: '8:30pm', exercise: 'squat', set: '6', weight: '225', reps: '10', rpe: '5' },
+    ]
+
 ]
 
 export const AddWorkout: React.FC = () => {
@@ -72,10 +83,17 @@ export const AddWorkout: React.FC = () => {
     // array of objects that holds set data
     const [allSetData, setAllSetData] = useState<AllSetData[]>([])
 
+    const [tabTitle, setTabTitle] = useState<string>('Add Workout')
     const [tabValue, setTabValue] = useState<number>(0);
 
     const handleTabChange = (newValue: number) => {
-        setTabValue(newValue);
+        setTabValue(newValue)
+        if (newValue === 1) {
+            setTabTitle('Exercise History')
+        } else if (newValue === 0) {
+            setTabTitle('Add Workout')
+        }
+
     };
 
     useEffect(() => {
@@ -182,7 +200,7 @@ export const AddWorkout: React.FC = () => {
                 <Grid container>
                     <Grid item xs={12} style={{ textAlign: "center", marginBottom: '1vh' }}>
                         <Paper elevation={3}>
-                            <Typography variant="h4">Add Workout</Typography>
+                            <Typography variant="h4">{tabTitle}</Typography>
                         </Paper>
                     </Grid>
                 </Grid>
@@ -362,22 +380,24 @@ export const AddWorkout: React.FC = () => {
                         {showSnackBar && <BasicSnackBar severity={'success'} message='Set added!' duration={250} trigger={setShowSnackBar} />}
                     </div>
 
-
                     {/* history tab */}
                     <div style={{ display: tabValue === 1 ? 'block' : 'none' }}>
 
-                        <Box display="flex" justifyContent="flex-end">
-                            <Button variant="outlined" onClick={() => handleTabChange(0)}>Workout</Button>
-                        </Box>
+                        <Container>
+                            <Box display="flex" justifyContent="flex-end">
+                                <Button variant="outlined" onClick={() => handleTabChange(0)}>Workout</Button>
+                            </Box>
 
-                        <h1>{searchBarValue}</h1>
+                            <Typography variant='h3'>{searchBarValue}</Typography>
+
+                        </Container>
 
                         {/* data structure to be determined - testing only */}
-                        {history.map((data, key) => {
+                        {history.map((dataArray, key) => {
 
                             return (
                                 <div key={key}>
-                                    <ExerciseHistory setHistory={data} />
+                                    <ExerciseHistory setHistory={dataArray} />
                                 </div>
                             )
 
